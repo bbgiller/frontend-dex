@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import GetCurrentGlucose from "./GetCurrentGlucose";
 import { Text, View } from "react-native";
-// type Props = {}
+import AxiosErrorHandler from "./AxiosErrorHandler";
 
 const CurrentGlucose = () => {
   const [value, setValue] = useState(0);
@@ -16,13 +16,7 @@ const CurrentGlucose = () => {
         setValue(glucose_value);
         setTrendArrow(trend_arrow);
       })
-      .catch((error) => {
-        if (error.response) {
-          console.log(error.response);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-        }
-      });
+      .catch((err) => AxiosErrorHandler(err));
   }, []);
   return (
     <View>

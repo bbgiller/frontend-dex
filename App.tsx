@@ -20,7 +20,7 @@ export default function App() {
 
   const localhostURL = isDevice
     ? `http://${Constants.manifest?.debuggerHost?.split(":").shift()}:9874`
-    : "/sugars/";
+    : "http://localhost:9874/";
 
   const useProdUrl =
     process.env.NODE_ENV === "production" ||
@@ -29,40 +29,6 @@ export default function App() {
   const baseURL = useProdUrl
     ? "https://scatter-server.herokuapp.com"
     : localhostURL;
-
-  // function getCurrentGlucose() {
-  //   fetch("http://localhost:9874/sugars/")
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setData(data);
-  //       console.log(data);
-  //     });
-  // }
-
-  // function getNewGlucose() {
-  //   axios({
-  //     method: "GET",
-  //     url: "http://localhost:9874/sugars/",
-  //   })
-  //     .then((response) => {
-  //       const res = response.data;
-  //       setGlucoseData({
-  //         username: res.username,
-  //         currentGlucose: res.current_glucose,
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       if (error.response) {
-  //         console.log(error.response);
-  //         console.log(error.response.status);
-  //         console.log(error.response.headers);
-  //       }
-  //     });
-  // }
-
-  // useEffect(() => {
-  //   getNewGlucose();
-  // }, []);
 
   return (
     <View style={styles.container}>
