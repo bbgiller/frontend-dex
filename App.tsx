@@ -4,6 +4,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Constants from "expo-constants";
 import { isDevice } from "expo-device";
+import CurrentGlucose from "./CurrentGlucose";
 
 export default function App() {
   interface GlucoseDataType {
@@ -38,37 +39,35 @@ export default function App() {
   //     });
   // }
 
-  function getNewGlucose() {
-    axios({
-      method: "GET",
-      url: "http://localhost:9874/sugars/",
-    })
-      .then((response) => {
-        const res = response.data;
-        setGlucoseData({
-          username: res.username,
-          currentGlucose: res.current_glucose,
-        });
-      })
-      .catch((error) => {
-        if (error.response) {
-          console.log(error.response);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-        }
-      });
-  }
+  // function getNewGlucose() {
+  //   axios({
+  //     method: "GET",
+  //     url: "http://localhost:9874/sugars/",
+  //   })
+  //     .then((response) => {
+  //       const res = response.data;
+  //       setGlucoseData({
+  //         username: res.username,
+  //         currentGlucose: res.current_glucose,
+  //       });
+  //     })
+  //     .catch((error) => {
+  //       if (error.response) {
+  //         console.log(error.response);
+  //         console.log(error.response.status);
+  //         console.log(error.response.headers);
+  //       }
+  //     });
+  // }
 
-  useEffect(() => {
-    getNewGlucose();
-  }, []);
+  // useEffect(() => {
+  //   getNewGlucose();
+  // }, []);
 
   return (
     <View style={styles.container}>
-      <Text>
-        {glucoseData.username}'s' current blood sugar is
-        {glucoseData.currentGlucose}
-      </Text>
+      <Text>Current Glucose is:</Text>
+      <CurrentGlucose />
     </View>
   );
 }
