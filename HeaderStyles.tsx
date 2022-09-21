@@ -8,7 +8,7 @@ export const HeaderStyles = StyleSheet.create({
     height: radius,
     borderRadius: radius / 2,
     borderColor: "black",
-    borderWidth: 4,
+    borderWidth: 3,
     backgroundColor: "green",
   },
   glucoseText: {
