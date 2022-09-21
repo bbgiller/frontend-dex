@@ -10,7 +10,7 @@ const GlucoseChart = (props: Props) => {
   const date = new Date(Date.now());
   const currentHour = date.getHours();
   const graphHours = [];
-  let i = 12;
+  let i = 6;
   while (i > 0) {
     graphHours.push((currentHour - i).toString());
     i--;
@@ -18,20 +18,20 @@ const GlucoseChart = (props: Props) => {
   console.log(props.data.map((obj) => obj.glucose_value));
   return (
     <View>
-      <Text>Bezier Line Chart</Text>
+      {/* <Text>Bezier Line Chart</Text> */}
       <LineChart
         data={{
           labels: graphHours,
           datasets: [
             {
-              data: [Math.random() * 100],
+              data: props.data.map((obj) => obj.glucose_value),
             },
           ],
         }}
         width={Dimensions.get("window").width} // from react-native
         height={220}
-        yAxisLabel="$"
-        yAxisSuffix="k"
+        yAxisLabel=""
+        yAxisSuffix=""
         yAxisInterval={1} // optional, defaults to 1
         chartConfig={{
           backgroundColor: "#e26a00",
