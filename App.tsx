@@ -6,6 +6,7 @@ import Constants from "expo-constants";
 import { isDevice } from "expo-device";
 import CurrentGlucose from "./CurrentGlucose";
 import GlucoseReadings from "./GlucoseReadings";
+import GlucoseChart from "./GlucoseChart";
 
 export default function App() {
   interface GlucoseDataType {
@@ -35,7 +36,7 @@ export default function App() {
     <View style={styles.container}>
       <Text>Current Glucose is:</Text>
       <CurrentGlucose />
-      <GlucoseReadings />
+      <GlucoseChart data />
     </View>
   );
 }
