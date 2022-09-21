@@ -6,6 +6,7 @@ import AxiosErrorHandler from "./AxiosErrorHandler";
 const CurrentGlucose = () => {
   const [value, setValue] = useState(0);
   const [trendArrow, setTrendArrow] = useState("");
+  const [trendDescription, setTrendDescription] = useState("");
   useEffect(() => {
     GetCurrentGlucose()
       .then((response) => {
@@ -15,6 +16,7 @@ const CurrentGlucose = () => {
         console.log(res);
         setValue(glucose_value);
         setTrendArrow(trend_arrow);
+        setTrendDescription(trend_description);
       })
       .catch((err) => AxiosErrorHandler(err));
   }, []);
@@ -24,6 +26,7 @@ const CurrentGlucose = () => {
         {value}
         {trendArrow}
       </Text>
+      <Text>Your blood sugar is {trendDescription}</Text>
     </View>
   );
 };
