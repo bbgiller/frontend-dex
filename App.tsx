@@ -36,7 +36,7 @@ export default function App() {
     <View style={styles.container}>
       <Text>Current Glucose is:</Text>
       <CurrentGlucose />
-      <GlucoseChart data />
+      <GlucoseReadings />
     </View>
   );
 }

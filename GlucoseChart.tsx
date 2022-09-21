@@ -1,25 +1,30 @@
 import React from "react";
 import { View, Text, Dimensions } from "react-native";
 import { LineChart } from "react-native-chart-kit";
-type Props = { data: {} };
+import { GlucoseReadingsObject } from "./GlucoseReadingsType";
+
+type Props = { data: GlucoseReadingsObject[] };
 
 const GlucoseChart = (props: Props) => {
+  const { data } = props;
+  const date = new Date(Date.now());
+  const currentHour = date.getHours();
+  const graphHours = [];
+  let i = 12;
+  while (i > 0) {
+    graphHours.push((currentHour - i).toString());
+    i--;
+  }
+  console.log(props.data.map((obj) => obj.glucose_value));
   return (
     <View>
       <Text>Bezier Line Chart</Text>
       <LineChart
         data={{
-          labels: ["January", "February", "March", "April", "May", "June"],
+          labels: graphHours,
           datasets: [
             {
-              data: [
-                Math.random() * 100,
-                Math.random() * 100,
-                Math.random() * 100,
-                Math.random() * 100,
-                Math.random() * 100,
-                Math.random() * 100,
-              ],
+              data: [Math.random() * 100],
             },
           ],
         }}

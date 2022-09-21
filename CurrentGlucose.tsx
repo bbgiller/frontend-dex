@@ -13,7 +13,7 @@ const CurrentGlucose = () => {
         const res = response.data;
         const { glucose_value, time, trend, trend_arrow, trend_description } =
           res;
-        console.log(res);
+        // console.log(res);
         setValue(glucose_value);
         setTrendArrow(trend_arrow);
         setTrendDescription(trend_description);
