@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { Dimensions, StyleSheet, Text, View } from "react-native";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Constants from "expo-constants";
@@ -8,18 +8,13 @@ import CurrentGlucose from "./CurrentGlucose";
 import GlucoseReadings from "./GlucoseReadings";
 import GlucoseChart from "./GlucoseChart";
 import Header from "./Header";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function App() {
   interface GlucoseDataType {
     username: string;
     currentGlucose: number;
   }
-
-  const [glucoseData, setGlucoseData] = useState<GlucoseDataType>({
-    username: "",
-    currentGlucose: 0,
-  });
-  const [username, setUsername] = useState("");
 
   const localhostURL = isDevice
     ? `http://${Constants.manifest?.debuggerHost?.split(":").shift()}:5000`
@@ -34,18 +29,24 @@ export default function App() {
     : localhostURL;
 
   return (
-    <View style={styles.container}>
+    <LinearGradient
+      // Background Linear Gradient
+      colors={["#4c669f", "white", "transparent"]}
+      style={styles.container}
+    >
       <CurrentGlucose />
       <GlucoseReadings />
-    </View>
+      <View />
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-between",
+    height: Dimensions.get("screen").height,
+    width: Dimensions.get("screen").width,
   },
 });

@@ -7,7 +7,7 @@ type Props = { glucose: number; arrow: string };
 const Header = (props: Props) => {
   const { glucose, arrow } = props;
   return (
-    <View style={HeaderStyles.circle}>
+    <View style={HeaderStyles.header}>
       <Text style={HeaderStyles.glucoseText}>
         {glucose}
         {arrow}

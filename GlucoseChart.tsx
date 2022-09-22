@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, Dimensions } from "react-native";
 import { LineChart } from "react-native-chart-kit";
+import { width } from "./Dimmensions";
 import { GlucoseReadingsObject } from "./GlucoseReadingsType";
 
 type Props = { data: GlucoseReadingsObject[] };
@@ -28,15 +29,15 @@ const GlucoseChart = (props: Props) => {
             },
           ],
         }}
-        width={Dimensions.get("window").width} // from react-native
+        width={width} // from react-native
         height={220}
         yAxisLabel=""
         yAxisSuffix=""
         yAxisInterval={1} // optional, defaults to 1
         chartConfig={{
           backgroundColor: "#e26a00",
-          backgroundGradientFrom: "#fb8c00",
-          backgroundGradientTo: "#ffa726",
+          backgroundGradientFrom: "#191970",
+          backgroundGradientTo: "silver",
           decimalPlaces: 2, // optional, defaults to 2dp
           color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
           labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
@@ -44,15 +45,15 @@ const GlucoseChart = (props: Props) => {
             borderRadius: 16,
           },
           propsForDots: {
-            r: "6",
+            r: "3",
             strokeWidth: "2",
-            stroke: "#ffa726",
+            stroke: "silver",
           },
         }}
         bezier
         style={{
           marginVertical: 8,
-          borderRadius: 16,
+          // borderRadius: 16,
         }}
       />
     </View>
