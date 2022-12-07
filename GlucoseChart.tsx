@@ -16,7 +16,7 @@ const GlucoseChart = (props: Props) => {
     graphHours.push((currentHour - i).toString());
     i--;
   }
-  console.log(props.data.map((obj) => obj.glucose_value));
+  // console.log(props.data.map((obj) => obj.glucose_value));
   return (
     <View>
       {/* <Text>Bezier Line Chart</Text> */}

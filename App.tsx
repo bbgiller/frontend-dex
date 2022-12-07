@@ -9,6 +9,8 @@ import GlucoseReadings from "./GlucoseReadings";
 import GlucoseChart from "./GlucoseChart";
 import Header from "./Header";
 import { LinearGradient } from "expo-linear-gradient";
+import RangeReadingsChart from "./RangeReadingsChart";
+import RangeReadings from "./RangeReadings";
 
 export default function App() {
   interface GlucoseDataType {
@@ -35,7 +37,8 @@ export default function App() {
       style={styles.container}
     >
       <CurrentGlucose />
-      <GlucoseReadings />
+      {/* <GlucoseReadings /> */}
+      <RangeReadings />
       <View />
     </LinearGradient>
   );

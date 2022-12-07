@@ -16,7 +16,6 @@ const GlucoseReadings = () => {
         setReadingsData(glucose_list);
       })
       .catch((err) => AxiosErrorHandler(err));
-    // console.log(readingsData);
   }, []);
   return (
     <View>
