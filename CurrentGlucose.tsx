@@ -1,40 +1,55 @@
 import React, { useEffect, useState } from "react";
-import GetCurrentGlucose from "./GetCurrentGlucose";
-import { Text, View } from "react-native";
-import AxiosErrorHandler from "./AxiosErrorHandler";
 import Header from "./Header";
 import { client } from "./NetworkConstants";
-import { CurrentGlucoseData } from "./CurrentGlucoseType";
-import axios from "axios";
+import { GlucoseDataState, GlucoseDataType } from "./GlucoseDataType";
+import axios, { Axios, AxiosError, AxiosResponse } from "axios";
+
+// const initialGlucose = {} as GlucoseDataType;
 
 const CurrentGlucose = () => {
-  const [value, setValue] = useState(0);
-  const [trendArrow, setTrendArrow] = useState("");
-  const [trendDescription, setTrendDescription] = useState("");
+  const [glucoseData, setGlucoseData] = useState<GlucoseDataState>(undefined);
 
-  async function GlucoseCall() {
-    // console.log("glucose call");
-    GetCurrentGlucose()
-      .then((response) => {
-        const res = response.data;
-        const { glucose_value, time, trend, trend_arrow, trend_description } =
-          res;
-        // console.log(10);
-        // console.log(glucose_value);
-        setValue(glucose_value);
-        setTrendArrow(trend_arrow);
-        setTrendDescription(trend_description);
-      })
-      .catch((err) => AxiosErrorHandler(err));
-  }
+  const [error, setError] = useState<string | null>(null);
+
+  const url = "/current_glucose";
+
+  // useEffect(() => {
+  //   let interval = setInterval(() => GlucoseCall(), 60000);
+  //   return () => {
+  //     clearInterval(interval);
+  //   };
+  // }, []);
 
   useEffect(() => {
-    let interval = setInterval(() => GlucoseCall(), 60000);
-    return () => {
-      clearInterval(interval);
-    };
+    GlucoseCall();
   }, []);
-  return <Header glucose={value} arrow={trendArrow} />;
+
+  const GlucoseCall = async () => {
+    try {
+      const response: AxiosResponse<GlucoseDataType> = await axios.get(
+        "http://localhost:9874/current_glucose"
+      );
+      const data = await response.data;
+      setGlucoseData(data);
+    } catch (err) {
+      if (axios.isAxiosError(err)) {
+        console.log(err.status);
+        console.error(err.response);
+        console.log(err.message);
+        setError(err.message);
+      } else {
+        console.error(error);
+      }
+    }
+  };
+
+  return (
+    <Header
+      glucose={
+        glucoseData ? glucoseData.glucose_value.toString() : error || "Loading"
+      }
+    />
+  );
 };
 
 export default CurrentGlucose;

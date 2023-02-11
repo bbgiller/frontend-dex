@@ -22,7 +22,7 @@ export const HeaderStyles = StyleSheet.create({
   glucoseText: {
     // textAlignVertical: "center",
     fontSize: 30,
-    color: "white",
+    color: "black",
     fontWeight: "bold",
   },
 });

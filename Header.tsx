@@ -2,16 +2,13 @@ import React from "react";
 import { HeaderStyles } from "./HeaderStyles";
 import { View, Text } from "react-native";
 
-type Props = { glucose: number; arrow: string };
+type Props = { glucose: string };
 
 const Header = (props: Props) => {
-  const { glucose, arrow } = props;
+  const { glucose } = props;
   return (
     <View style={HeaderStyles.header}>
-      <Text style={HeaderStyles.glucoseText}>
-        {glucose}
-        {arrow}
-      </Text>
+      <Text style={HeaderStyles.glucoseText}>{glucose}</Text>
     </View>
   );
 };

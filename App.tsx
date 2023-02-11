@@ -31,16 +31,13 @@ export default function App() {
     : localhostURL;
 
   return (
-    <LinearGradient
-      // Background Linear Gradient
-      colors={["#4c669f", "white", "transparent"]}
-      style={styles.container}
+    <View
+    // Background Linear Gradient
+    // colors={["#4c669f", "white", "transparent"]}
+    // style={styles.container}
     >
       <CurrentGlucose />
-      {/* <GlucoseReadings /> */}
-      <RangeReadings />
-      <View />
-    </LinearGradient>
+    </View>
   );
 }
 
