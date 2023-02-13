@@ -2,18 +2,26 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { height, width } from "../constants/Dimmensions";
 
-const radius = 88;
 export const CurrentGlucoseStyles = StyleSheet.create({
   container: {
-    // backgroundColor: "black",
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
   },
   allText: {
-    // textAlignVertical: "center",
     fontSize: 30,
     color: "black",
-    // fontWeight: "bold",
   },
   glucoseText: {
     fontWeight: "bold",
+  },
+  units: {
+    position: "absolute",
+    top: height * 0.05,
+    left: 0,
+    right: 0,
+    flexDirection: "row",
+    justifyContent: "space-around",
+    paddingHorizontal: width * 0.05,
   },
 });
