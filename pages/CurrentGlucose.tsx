@@ -29,9 +29,16 @@ const CurrentGlucose = () => {
   return (
     <View style={CurrentGlucoseStyles.container}>
       <View style={CurrentGlucoseStyles.units}>
-        <UnitButton unit="mg" onPressFunction={() => handlePress("mg")} />
-
-        <UnitButton unit="mmol" onPressFunction={() => handlePress("mmol")} />
+        <UnitButton
+          color={mmol ? "grey" : "black"}
+          unit="mg"
+          onPressFunction={() => handlePress("mg")}
+        />
+        <UnitButton
+          color={!mmol ? "grey" : "black"}
+          unit="mmol"
+          onPressFunction={() => handlePress("mmol")}
+        />
       </View>
 
       <View style={{ justifyContent: "center", alignItems: "center" }}>
