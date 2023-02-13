@@ -1,19 +1,21 @@
 import React from "react";
 import useCurrentGlucose from "../components/CurrentGlucose/useCurrentGlucose";
 import { Text, View } from "react-native";
-import { HeaderStyles } from "../HeaderStyles";
+import { CurrentGlucoseStyles } from "../styles/CurrentGlucoseStyles";
 const CurrentGlucose = () => {
   const { data, loaded, error } = useCurrentGlucose();
-  if (!loaded) return <div>loading</div>;
-  if (error) return <div>{error}</div>;
+  if (!loaded) return <Text>loading</Text>;
+  if (error) return <Text>{error}</Text>;
 
   return (
-    <View style={HeaderStyles.header}>
-      <Text style={HeaderStyles.glucoseText}>
-        Your blood sugar is
-        {data?.glucose_value}
-        and
-        {data?.trend_description}
+    <View style={CurrentGlucoseStyles.container}>
+      <Text style={CurrentGlucoseStyles.allText}>
+        <Text>Glucose is {}</Text>
+        <Text style={CurrentGlucoseStyles.glucoseText}>
+          {data?.glucose_value}
+        </Text>
+        <Text> and {}</Text>
+        <Text>{data?.trend_description}</Text>
       </Text>
     </View>
   );

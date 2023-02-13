@@ -23,9 +23,9 @@ export default function App() {
 
   return (
     <View
-    // Background Linear Gradient
-    // colors={["#4c669f", "white", "transparent"]}
-    // style={styles.container}
+      // Background Linear Gradient
+      // colors={["#4c669f", "white", "transparent"]}
+      style={styles.container}
     >
       <CurrentGlucose />
     </View>
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "center",
     height: Dimensions.get("screen").height,
     width: Dimensions.get("screen").width,
   },
