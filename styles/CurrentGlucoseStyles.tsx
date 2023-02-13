@@ -15,7 +15,10 @@ export const CurrentGlucoseStyles = StyleSheet.create({
   glucoseText: {
     fontWeight: "bold",
   },
+  mg: { fontSize: 20, color: "black", fontWeight: "bold" },
+  mmol: { fontSize: 20, color: "grey", opacity: 0.5 },
   units: {
+    fontSize: 15,
     position: "absolute",
     top: height * 0.05,
     left: 0,
