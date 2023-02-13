@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet } from "react-native";
-import { height, width } from "./Dimmensions";
+import { height, width } from "./constants/Dimmensions";
 
 const radius = 88;
 export const HeaderStyles = StyleSheet.create({

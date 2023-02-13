@@ -1,16 +1,7 @@
-import { StatusBar } from "expo-status-bar";
 import { Dimensions, StyleSheet, Text, View } from "react-native";
-import axios from "axios";
-import { useEffect, useState } from "react";
 import Constants from "expo-constants";
 import { isDevice } from "expo-device";
-import CurrentGlucose from "./CurrentGlucose";
-import GlucoseReadings from "./GlucoseReadings";
-import GlucoseChart from "./GlucoseChart";
-import Header from "./Header";
-import { LinearGradient } from "expo-linear-gradient";
-import RangeReadingsChart from "./RangeReadingsChart";
-import RangeReadings from "./RangeReadings";
+import CurrentGlucose from "./components/CurrentGlucose";
 
 export default function App() {
   interface GlucoseDataType {

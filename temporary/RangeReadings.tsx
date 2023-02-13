@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View } from "react-native";
 import AxiosErrorHandler from "./AxiosErrorHandler";
-import GetRangeReadings from "./GetRangeReadings";
+import GetRangeReadings from "../GetRangeReadings";
 import RangeReadingsChart from "./RangeReadingsChart";
 import { RangeReadingData } from "./RangeReadingsTypes";
 const RangeReadings = () => {

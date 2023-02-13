@@ -3,7 +3,7 @@ import GetGlucoseReadings from "./GetGlucoseReadings";
 import { Text, View } from "react-native";
 import AxiosErrorHandler from "./AxiosErrorHandler";
 import { GlucoseReadingsObject } from "./GlucoseReadingsType";
-import GlucoseChart from "./GlucoseChart";
+import GlucoseChart from "../GlucoseChart";
 
 const GlucoseReadings = () => {
   const [readingsData, setReadingsData] = useState<GlucoseReadingsObject[]>([]);

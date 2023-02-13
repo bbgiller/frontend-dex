@@ -1,4 +1,4 @@
-import { client } from "./NetworkConstants";
+import { client } from "../constants/NetworkConstants";
 import { GlucoseReadingsType } from "./GlucoseReadingsType";
 const GetGlucoseReadings = async () => {
   const url = "/glucose_readings";
