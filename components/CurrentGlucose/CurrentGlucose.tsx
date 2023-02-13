@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Header from "../pages/CurrentGlucoseTab";
-import { client } from "../constants/NetworkConstants";
-import { GlucoseDataState, GlucoseDataType } from "../types/GlucoseDataType";
+import Header from "../../pages/CurrentGlucoseTab";
+import { client } from "../../constants/NetworkConstants";
+import { GlucoseDataState, GlucoseDataType } from "../../types/GlucoseDataType";
 import axios, { Axios, AxiosError, AxiosResponse } from "axios";
-
-// const initialGlucose = {} as GlucoseDataType;
 
 const CurrentGlucose = () => {
   const [glucoseData, setGlucoseData] = useState<GlucoseDataState>(undefined);
@@ -22,11 +20,9 @@ const CurrentGlucose = () => {
 
   const GlucoseCall = async () => {
     try {
-      console.log("GlucoseCall");
-      const response: AxiosResponse<GlucoseDataType> = await axios.get(
+      const { data }: AxiosResponse<GlucoseDataType> = await axios.get(
         "http://localhost:9874/current_glucose"
       );
-      const data = await response.data;
       setGlucoseData(data);
     } catch (err) {
       if (axios.isAxiosError(err)) {

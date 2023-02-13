@@ -1,7 +1,7 @@
 import { Dimensions, StyleSheet, Text, View } from "react-native";
 import Constants from "expo-constants";
 import { isDevice } from "expo-device";
-import CurrentGlucose from "./components/CurrentGlucose";
+import CurrentGlucose from "./components/CurrentGlucose/CurrentGlucose";
 
 export default function App() {
   interface GlucoseDataType {

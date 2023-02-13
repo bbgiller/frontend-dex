@@ -1,8 +1,13 @@
-const AxiosErrorHandler = (error: any) => {
-  if (error.response) {
-    console.log(error.response);
-    console.log(error.response.status);
-    console.log(error.response.headers);
-  }
-};
-export default AxiosErrorHandler;
+// import axios from "axios";
+
+// const AxiosErrorHandler = (error: any) => {
+//   if (axios.isAxiosError(error)) {
+//         console.log(error.status);
+//         console.error(error.response);
+//         console.log(error.message);
+//         setError(err.message);
+//       } else {
+//         console.error(error);
+//       }
+// };
+// export default AxiosErrorHandler;
