@@ -1,9 +1,8 @@
 import { client } from "../../constants/NetworkConstants";
-import { CurrentGlucoseData } from "../../types/GlucoseDataType";
+import { GlucoseDataType } from "../../types/GlucoseDataType";
 const GetCurrentGlucose = async () => {
   const url = "/current_glucose";
-  const response = await client.get<CurrentGlucoseData>(url);
-  // console.log(response || "no response");
+  const response = await client.get<GlucoseDataType>(url);
   return response;
 };
 export default GetCurrentGlucose;

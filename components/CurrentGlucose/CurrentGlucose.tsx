@@ -1,49 +1,30 @@
 import React, { useEffect, useState } from "react";
 import Header from "../../pages/CurrentGlucoseTab";
-import { client } from "../../constants/NetworkConstants";
-import { GlucoseDataState, GlucoseDataType } from "../../types/GlucoseDataType";
-import axios, { Axios, AxiosError, AxiosResponse } from "axios";
-
+import useAxiosGet from "../../Hooks/useAxiosGet";
+import { GlucoseDataType } from "../../types/GlucoseDataType";
+const url = "current_glucose";
 const CurrentGlucose = () => {
-  const [glucoseData, setGlucoseData] = useState<GlucoseDataState>(undefined);
-
-  const [error, setError] = useState<string | null>(null);
-
-  const url = "/current_glucose";
-
+  const { data, loaded, error } = useAxiosGet<GlucoseDataType>(url);
   useEffect(() => {
-    let interval = setInterval(() => GlucoseCall(), 60000);
+    const interval = setInterval(() => {
+      useAxiosGet<GlucoseDataType>(url);
+    }, 300000);
+
     return () => {
       clearInterval(interval);
     };
-  }, []);
+  }, [url]);
 
-  const GlucoseCall = async () => {
-    try {
-      const { data }: AxiosResponse<GlucoseDataType> = await axios.get(
-        "http://localhost:9874/current_glucose"
-      );
-      setGlucoseData(data);
-    } catch (err) {
-      if (axios.isAxiosError(err)) {
-        console.log(err.status);
-        console.error(err.response);
-        console.log(err.message);
-        setError(err.message);
-      } else {
-        console.error(error);
-      }
-    }
-  };
-
-  return glucoseData ? (
-    <Header
-      trendDescription={
-        error || glucoseData.trend_description.toString() || "Loading"
-      }
-      glucose={error || glucoseData.glucose_value.toString() || "Loading"}
-    />
-  ) : null;
+  if (!loaded) {
+  }
+  if (data) {
+    return (
+      <Header
+        trendDescription={error || data.trend_description.toString()}
+        glucose={error || data.glucose_value.toString()}
+      />
+    );
+  }
 };
 
 export default CurrentGlucose;
