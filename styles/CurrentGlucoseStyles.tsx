@@ -11,6 +11,7 @@ export const CurrentGlucoseStyles = StyleSheet.create({
   allText: {
     fontSize: 30,
     color: "black",
+    textAlign: "center",
   },
   glucoseText: {
     fontWeight: "bold",

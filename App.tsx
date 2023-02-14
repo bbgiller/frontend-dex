@@ -1,10 +1,8 @@
 import { Dimensions, StyleSheet, Text, View } from "react-native";
-import Constants from "expo-constants";
-import { isDevice } from "expo-device";
 import CurrentGlucose from "./pages/CurrentGlucose";
-import Navigation from "./pages/Tabs/TabNavigator";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 export default function App() {
   const Tab = createBottomTabNavigator();
@@ -12,7 +10,20 @@ export default function App() {
     // <View style={styles.container}>
     <NavigationContainer>
       <Tab.Navigator>
-        <Tab.Screen name="Current Glucose" component={CurrentGlucose} />
+        <Tab.Screen
+          name="Glucose"
+          component={CurrentGlucose}
+          options={{
+            tabBarIcon: ({ focused, color, size }) => (
+              <Ionicons
+                name="ios-egg"
+                size={size}
+                style={{ opacity: 0.9 }}
+                color={"black"}
+              />
+            ),
+          }}
+        />
       </Tab.Navigator>
     </NavigationContainer>
     // </View>

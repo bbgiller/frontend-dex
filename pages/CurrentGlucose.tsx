@@ -5,10 +5,8 @@ import { CurrentGlucoseStyles } from "../styles/CurrentGlucoseStyles";
 import UnitButton from "../components/Buttons/CurrentGlucose/UnitButton";
 
 const CurrentGlucose = () => {
-  const [mmol, setMmol] = useState(false);
   const { data, loaded, error } = useCurrentGlucose();
-  if (!loaded) return <Text>loading</Text>;
-  if (error) return <Text>{error}</Text>;
+  const [mmol, setMmol] = useState(false);
 
   const handlePress = (unit: string) => {
     setMmol(unit === "mmol");
@@ -16,29 +14,37 @@ const CurrentGlucose = () => {
 
   return (
     <View style={CurrentGlucoseStyles.container}>
-      <View style={CurrentGlucoseStyles.units}>
-        <UnitButton
-          color={mmol ? "grey" : "black"}
-          unit="mg"
-          onPressFunction={() => handlePress("mg")}
-        />
-        <UnitButton
-          color={!mmol ? "grey" : "black"}
-          unit="mmol"
-          onPressFunction={() => handlePress("mmol")}
-        />
-      </View>
+      {!loaded ? (
+        <Text>loading</Text>
+      ) : error ? (
+        <Text>{error}</Text>
+      ) : (
+        <>
+          <View style={CurrentGlucoseStyles.units}>
+            <UnitButton
+              color={mmol ? "grey" : "black"}
+              unit="mg"
+              onPressFunction={() => handlePress("mg")}
+            />
+            <UnitButton
+              color={!mmol ? "grey" : "black"}
+              unit="mmol"
+              onPressFunction={() => handlePress("mmol")}
+            />
+          </View>
 
-      <View style={{ justifyContent: "center", alignItems: "center" }}>
-        <Text style={CurrentGlucoseStyles.allText}>
-          <Text>Glucose is {}</Text>
-          <Text style={CurrentGlucoseStyles.glucoseText}>
-            {mmol ? data?.mmol : data?.glucose_value}
-          </Text>
-          <Text> and {}</Text>
-          <Text>{data?.trend_description}</Text>
-        </Text>
-      </View>
+          <View style={{ justifyContent: "center", alignItems: "center" }}>
+            <Text style={CurrentGlucoseStyles.allText}>
+              <Text>Glucose is {}</Text>
+              <Text style={CurrentGlucoseStyles.glucoseText}>
+                {mmol ? data?.mmol : data?.glucose_value}
+              </Text>
+              <Text> and {}</Text>
+              <Text>{data?.trend_description}</Text>
+            </Text>
+          </View>
+        </>
+      )}
     </View>
   );
 };
