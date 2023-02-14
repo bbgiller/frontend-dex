@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import useCurrentGlucose from "../components/CurrentGlucose/useCurrentGlucose";
-import { Pressable, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import { CurrentGlucoseStyles } from "../styles/CurrentGlucoseStyles";
 import UnitButton from "../components/Buttons/CurrentGlucose/UnitButton";
 
@@ -11,19 +11,7 @@ const CurrentGlucose = () => {
   if (error) return <Text>{error}</Text>;
 
   const handlePress = (unit: string) => {
-    if (unit === "mg") {
-      if (!mmol) {
-        return;
-      } else {
-        setMmol(false);
-      }
-    } else {
-      if (mmol) {
-        return;
-      } else {
-        setMmol(true);
-      }
-    }
+    setMmol(unit === "mmol");
   };
 
   return (
