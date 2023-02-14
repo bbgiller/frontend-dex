@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import GetGlucoseReadings from "./GetGlucoseReadings";
 import { Text, View } from "react-native";
 import AxiosErrorHandler from "./AxiosErrorHandler";
-import { GlucoseReadingsObject } from "./GlucoseReadingsType";
+import { GlucoseReadingsObject } from "../types/GlucoseReadingsListType";
 import GlucoseChart from "../GlucoseChart";
 
 const GlucoseReadings = () => {
