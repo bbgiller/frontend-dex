@@ -2,33 +2,20 @@ import { Dimensions, StyleSheet, Text, View } from "react-native";
 import Constants from "expo-constants";
 import { isDevice } from "expo-device";
 import CurrentGlucose from "./pages/CurrentGlucose";
+import Navigation from "./pages/Tabs/TabNavigator";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 export default function App() {
-  interface GlucoseDataType {
-    username: string;
-    currentGlucose: number;
-  }
-
-  const localhostURL = isDevice
-    ? `http://${Constants.manifest?.debuggerHost?.split(":").shift()}:5000`
-    : "http://localhost:5000/";
-
-  const useProdUrl =
-    process.env.NODE_ENV === "production" ||
-    process.env.MIMIC_LOCALHOST_PROD === "true";
-
-  const baseURL = useProdUrl
-    ? "https://scatter-server.herokuapp.com"
-    : localhostURL;
-
+  const Tab = createBottomTabNavigator();
   return (
-    <View
-      // Background Linear Gradient
-      // colors={["#4c669f", "white", "transparent"]}
-      style={styles.container}
-    >
-      <CurrentGlucose />
-    </View>
+    // <View style={styles.container}>
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen name="Current Glucose" component={CurrentGlucose} />
+      </Tab.Navigator>
+    </NavigationContainer>
+    // </View>
   );
 }
 
