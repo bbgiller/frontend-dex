@@ -1,11 +1,27 @@
 import axios from "axios";
 import { isDevice } from "expo-device";
 import Constants from "expo-constants";
-const localhostURL = isDevice
-  ? `http://${Constants.manifest?.debuggerHost?.split(":").shift()}:9874`
-  : "http://localhost:9874/";
+import * as Network from "expo-network";
 
-const BaseLocalURL = "http://localhost:9874";
+let BaseLocalURL = "";
+
+async function setBaseLocalURL() {
+  if (isDevice) {
+    // If running on a physical device, use the device's local IP address
+    const ipAlert = async () => {
+      const ip = await Network.getIpAddressAsync();
+      BaseLocalURL = `http://${ip}:9874`;
+      console.log(BaseLocalURL);
+    };
+    ipAlert();
+  } else {
+    // If running on a simulator, use localhost
+    BaseLocalURL = "http://localhost:9874";
+  }
+}
+
+setBaseLocalURL();
+
 export const client = axios.create({
   baseURL: BaseLocalURL,
 });

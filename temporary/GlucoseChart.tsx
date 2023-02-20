@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, Dimensions } from "react-native";
 import { LineChart } from "react-native-chart-kit";
 import { width } from "./Dimmensions";
-import { GlucoseReadingsObject } from "./GlucoseReadingsType";
+import { GlucoseReadingsObject } from "../types/GlucoseReadingsListType";
 
 type Props = { data: GlucoseReadingsObject[] };
 
