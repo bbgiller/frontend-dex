@@ -1,21 +1,35 @@
 import React from "react";
 import useGlucoseReadingsList from "../components/GlucoseReadingsList/useGlucoseReadingsList";
-import { View, Text } from "react-native";
-import { FlatList } from "react-native";
+import { View, Text, FlatList } from "react-native";
 import { GlucoseReadingsListStyles as styles } from "../styles/GlucoseReadingsListStyles";
-import { GlucoseRanges } from "../constants/GlucoseRangeColors";
+import GlucoseReading from "../components/GlucoseReadingsList/GlucoseReading";
+// import { GlucoseRanges } from "../constants/GlucoseRangeColors";
 type Props = {};
 
-const rangeEmojis = {
-  low: "😖",
-  normal: "☺",
-  high: "😤",
-};
+// const rangeEmojis = {
+//   low: "😖",
+//   normal: "☺",
+//   high: "😤",
+// };
+const headerComponent = (
+  <View style={styles.listItems}>
+    <Text style={styles.columnHeader}>Glucose mg/dl</Text>
+    <Text style={[styles.columnHeader]}>Time</Text>
+  </View>
+);
 
 const GlucoseReadingsList = (props: Props) => {
   const { data, loaded, error } = useGlucoseReadingsList();
   const glucoseReadings = data?.glucose_list;
 
+  const renderItem = ({
+    item,
+  }: {
+    item: { glucose_value: number; time: string };
+  }) => {
+    const { glucose_value, time } = item;
+    return <GlucoseReading glucoseValue={glucose_value} time={time} />;
+  };
   return (
     <View style={styles.container}>
       {!loaded ? (
@@ -24,24 +38,12 @@ const GlucoseReadingsList = (props: Props) => {
         <Text>{error}</Text>
       ) : (
         <FlatList
+          ListHeaderComponent={headerComponent}
           contentContainerStyle={styles.flatList}
           ItemSeparatorComponent={() => (
             <View style={styles.itemSeparator}></View>
           )}
-          renderItem={({ item }) => (
-            <View style={styles.listItems}>
-              {<Text>{rangeEmojis[GlucoseRanges(item.glucose_value)]}</Text>}
-              <Text
-                style={{
-                  fontSize: 20,
-                  fontFamily: "system",
-                }}
-              >
-                {item.glucose_value}
-              </Text>
-              <Text style={{ fontSize: 10 }}>{item.time}</Text>
-            </View>
-          )}
+          renderItem={renderItem}
           keyExtractor={(item) => item.time}
           data={glucoseReadings}
         ></FlatList>

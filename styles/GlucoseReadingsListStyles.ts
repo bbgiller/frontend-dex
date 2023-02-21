@@ -14,11 +14,19 @@ export const GlucoseReadingsListStyles = StyleSheet.create({
   listItems: {
     flexDirection: "row",
     justifyContent: "space-around",
+    flex: 1,
+    width: width * 0.9,
   },
   itemSeparator: {
     padding: 1,
     height: 2,
     backgroundColor: "grey",
     opacity: 0.1,
+  },
+  columnHeader: {
+    textAlign: "center",
+    flex: 1,
+    justifyContent: "center",
+    paddingBottom: 12,
   },
 });
