@@ -28,5 +28,6 @@ export const GlucoseReadingsListStyles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     paddingBottom: 12,
+    fontStyle: "italic",
   },
 });

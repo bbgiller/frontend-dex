@@ -13,8 +13,7 @@ type Props = {};
 // };
 const headerComponent = (
   <View style={styles.listItems}>
-    <Text style={styles.columnHeader}>Glucose mg/dl</Text>
-    <Text style={[styles.columnHeader]}>Time</Text>
+    <Text style={styles.columnHeader}>Glucose (mg/dl)</Text>
   </View>
 );
 

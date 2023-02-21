@@ -9,8 +9,8 @@ type Props = {
 const GlucoseReading = ({ glucoseValue, time }: Props) => {
   return (
     <View style={styles.listItems}>
-      <Text style={{ fontSize: 20 }}>{glucoseValue}</Text>
-      <Text style={{ fontSize: 10 }}>{time}</Text>
+      <Text style={{ fontSize: 15 }}>{glucoseValue}</Text>
+      <Text style={{ fontSize: 12, color: "grey" }}>{time}</Text>
     </View>
   );
 };
