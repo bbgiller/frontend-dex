@@ -36,6 +36,7 @@ export default function App() {
                 color={"black"}
               />
             ),
+            headerStyle: { backgroundColor: "#f2f3f3" },
           }}
         />
       </Tab.Navigator>
