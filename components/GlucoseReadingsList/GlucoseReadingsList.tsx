@@ -1,8 +1,8 @@
 import React from "react";
-import useGlucoseReadingsList from "../components/GlucoseReadingsList/useGlucoseReadingsList";
+import useGlucoseReadingsList from "./useGlucoseReadingsList";
 import { View, Text, FlatList } from "react-native";
-import { GlucoseReadingsListStyles as styles } from "../styles/GlucoseReadingsListStyles";
-import GlucoseReading from "../components/GlucoseReadingsList/GlucoseReading";
+import { GlucoseReadingsListStyles as styles } from "../../styles/GlucoseReadingsListStyles";
+import GlucoseReading from "./GlucoseReading";
 // import { GlucoseRanges } from "../constants/GlucoseRangeColors";
 type Props = {};
 
