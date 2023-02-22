@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import useAxiosGet from "../../Hooks/useAxiosGet";
 import { GlucoseDataType } from "../../types/GlucoseDataType";
-
+const url = "current_glucose";
 const useCurrentGlucose = () => {
-  const url = "current_glucose";
   const { data, loaded, error } = useAxiosGet<GlucoseDataType>(url);
 
   useEffect(() => {

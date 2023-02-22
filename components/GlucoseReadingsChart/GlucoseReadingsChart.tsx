@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Dimensions } from "react-native";
+import { View, Text } from "react-native";
 import { LineChart } from "react-native-chart-kit";
 import useGlucoseReadingsList from "../GlucoseReadingsList/useGlucoseReadingsList";
 import { height, width } from "../../constants/Dimmensions";
@@ -17,6 +17,7 @@ const GlucoseReadingsChart = (props: Props) => {
     graphHours.push((currentHour - i).toString());
     i--;
   }
+
   return (
     <View>
       {/* <Text>Bezier Line Chart</Text> */}
@@ -42,10 +43,9 @@ const GlucoseReadingsChart = (props: Props) => {
           yAxisLabel=""
           yAxisSuffix=""
           yAxisInterval={50}
-          // optional, defaults to 1
           chartConfig={{
             backgroundColor: "white",
-            decimalPlaces: 0, // optional, defaults to 2dp
+            decimalPlaces: 0,
             color: (s) => `black`,
             backgroundGradientFrom: "white",
             backgroundGradientTo: "white",
@@ -57,6 +57,7 @@ const GlucoseReadingsChart = (props: Props) => {
               strokeWidth: "2",
               stroke: "silver",
             },
+            fillShadowGradient: "rgba(52, 168, 83, 0.9)",
           }}
           fromZero
           bezier={false}
