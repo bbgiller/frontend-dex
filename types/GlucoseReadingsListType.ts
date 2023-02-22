@@ -1,4 +1,4 @@
-type GlucoseReadingsObject = {
+export type GlucoseReadingsObject = {
   glucose_value: number;
   time: string;
 };
