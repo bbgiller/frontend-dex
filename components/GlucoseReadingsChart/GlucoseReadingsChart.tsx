@@ -6,7 +6,7 @@ import { height, width } from "../../constants/Dimmensions";
 
 type Props = {};
 
-const GlucoseChart = (props: Props) => {
+const GlucoseReadingsChart = (props: Props) => {
   const { data, loaded, error } = useGlucoseReadingsList();
 
   const date = new Date(Date.now());
@@ -34,7 +34,7 @@ const GlucoseChart = (props: Props) => {
               },
             ],
           }}
-          width={width} // from react-native
+          width={width}
           height={height}
           yAxisLabel=""
           yAxisSuffix=""
@@ -42,8 +42,10 @@ const GlucoseChart = (props: Props) => {
           chartConfig={{
             backgroundColor: "white",
             decimalPlaces: 0, // optional, defaults to 2dp
-            color: (opacity = 1) => ``,
-            labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+            color: (s) => `black`,
+            backgroundGradientFrom: "white",
+            backgroundGradientTo: "white",
+            // labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
             style: {
               borderRadius: 16,
             },
@@ -53,10 +55,11 @@ const GlucoseChart = (props: Props) => {
               stroke: "silver",
             },
           }}
-          bezier
+          bezier={false}
           style={{
-            marginVertical: 8,
+            // marginVertical: 8,
             // borderRadius: 16,
+            backgroundColor: "white",
           }}
         />
       )}
@@ -64,4 +67,4 @@ const GlucoseChart = (props: Props) => {
   );
 };
 
-export default GlucoseChart;
+export default GlucoseReadingsChart;
