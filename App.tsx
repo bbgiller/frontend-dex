@@ -3,7 +3,9 @@ import CurrentGlucose from "./pages/CurrentGlucose";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import GlucoseReadingsList from "./pages/GlucoseReadingsList";
+import GlucoseReadingsList from "./components/GlucoseReadingsList/GlucoseReadingsList";
+import GlucoseReadingsChart from "./components/GlucoseReadingsChart/GlucoseReadingsChart";
+import ChartsTab from "./pages/ChartsTab";
 
 export default function App() {
   const Tab = createBottomTabNavigator();
@@ -25,17 +27,18 @@ export default function App() {
           }}
         />
         <Tab.Screen
-          name="Glucose Readings"
-          component={GlucoseReadingsList}
+          name="Charts"
+          component={ChartsTab}
           options={{
             tabBarIcon: ({ focused, color, size }) => (
               <Ionicons
-                name="ios-heart"
+                name="ios-stats-chart"
                 size={size}
                 style={{ opacity: 0.9 }}
                 color={"black"}
               />
             ),
+
             headerStyle: { backgroundColor: "#f2f3f3" },
           }}
         />
