@@ -22,13 +22,21 @@ const GlucoseReadingsChart = (props: Props) => {
     <TouchableOpacity
       onPress={() => filterData(hours)}
       style={{
-        backgroundColor: interval === hours ? "gray" : "lightgray",
-        padding: 5,
-        borderRadius: 5,
+        backgroundColor: interval === hours ? "rgb(77,209,70)" : "white",
+        padding: 10,
+        borderRadius: 15,
+
         marginRight: 5,
       }}
     >
-      <Text> {hours} Hours</Text>
+      <Text
+        style={{
+          color: interval === hours ? "white" : "black",
+          fontWeight: interval === hours ? "bold" : undefined,
+        }}
+      >
+        {hours} Hours
+      </Text>
     </TouchableOpacity>
   );
 
@@ -63,8 +71,14 @@ const GlucoseReadingsChart = (props: Props) => {
   }, [interval, data]);
   return (
     <View>
-      <View style={{ flexDirection: "row", justifyContent: "center" }}>
-        {[24, 12, 6, 3].map((hour) => FilterButton(hour))}
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "center",
+          backgroundColor: "white",
+        }}
+      >
+        {[3, 6, 12, 24].map((hour) => FilterButton(hour))}
       </View>
       {!loaded || !data ? (
         <Text>loading</Text>

@@ -1,19 +1,48 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Text, View } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
+import Ionicons from "react-native-vector-icons/Ionicons";
 import CurrentGlucose from "../CurrentGlucose";
-
+import ChartsTab from "../ChartsTab";
+import { tabNavigatorStyles as styles } from "../../styles/TabNavigatorStyles";
 const Tab = createBottomTabNavigator();
 
-const Navigation = () => {
+const TabNavigator = () => {
   return (
-    <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="CurrentGlucose" component={CurrentGlucose} />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <Tab.Navigator>
+      <Tab.Screen
+        name="Glucose"
+        component={CurrentGlucose}
+        options={{
+          headerShown: false,
+
+          tabBarIcon: ({ focused, color, size }) => (
+            <Ionicons
+              name="ios-egg"
+              size={size}
+              style={{ opacity: 0.9 }}
+              color={focused ? "green" : "black"}
+            />
+          ),
+          headerStyle: styles.header,
+        }}
+      />
+      <Tab.Screen
+        name="Charts"
+        component={ChartsTab}
+        options={{
+          tabBarIcon: ({ focused, color, size }) => (
+            <Ionicons
+              name="ios-stats-chart"
+              size={size}
+              style={{ opacity: 0.9 }}
+              color={focused ? "green" : "black"}
+            />
+          ),
+          headerStyle: styles.header,
+        }}
+      />
+    </Tab.Navigator>
   );
 };
 
-export default Navigation;
+export default TabNavigator;
