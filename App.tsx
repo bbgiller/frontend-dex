@@ -27,7 +27,7 @@ export default function App() {
           }}
         />
         <Tab.Screen
-          name="Glucose Readings"
+          name="Charts"
           component={ChartsTab}
           options={{
             tabBarIcon: ({ focused, color, size }) => (
@@ -38,6 +38,7 @@ export default function App() {
                 color={"black"}
               />
             ),
+
             headerStyle: { backgroundColor: "#f2f3f3" },
           }}
         />

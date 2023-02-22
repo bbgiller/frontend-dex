@@ -1,26 +1,46 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 import GlucoseReadingsList from "../components/GlucoseReadingsList/GlucoseReadingsList";
 import GlucoseReadingsChart from "../components/GlucoseReadingsChart/GlucoseReadingsChart";
 
-type Props = {};
+type Props = {
+  navigation: any;
+};
 
-const ChartsTab = (props: Props) => {
+const ChartsTab = ({ navigation }: Props) => {
   const [showGraph, setShowGraph] = useState(false);
 
   const toggleView = () => {
     setShowGraph(!showGraph);
   };
 
-  return (
-    <View>
-      <TouchableOpacity onPress={toggleView}>
-        <Text>Switch View</Text>
-      </TouchableOpacity>
-      {!showGraph ? <GlucoseReadingsList /> : <GlucoseReadingsChart />}
-    </View>
+  const SwitchButton = () => (
+    <TouchableOpacity
+      style={{
+        padding: 5,
+        borderRadius: 5,
+      }}
+      onPress={toggleView}
+    >
+      <Ionicons
+        style={{ alignSelf: "flex-end", right: 20 }}
+        name="ios-bar-chart"
+        size={25}
+        color={showGraph ? "black" : "grey"}
+      />
+    </TouchableOpacity>
   );
+
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerTitle: "Charts",
+      headerRight: () => <SwitchButton />,
+    });
+  }, [navigation, showGraph]);
+
+  return !showGraph ? <GlucoseReadingsList /> : <GlucoseReadingsChart />;
 };
 
 export default ChartsTab;
