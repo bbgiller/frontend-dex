@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useCurrentGlucose from "../components/CurrentGlucose/useCurrentGlucose";
 import { Text, View } from "react-native";
 import { CurrentGlucoseStyles } from "../styles/CurrentGlucoseStyles";
@@ -51,6 +51,9 @@ const CurrentGlucose = () => {
           </View>
         </>
       )}
+      <Text style={{ top: 200, color: "grey" }}>
+        Last Updated: {data?.time}
+      </Text>
     </View>
   );
 };
