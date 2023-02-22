@@ -30,7 +30,10 @@ const GlucoseReadingsChart = (props: Props) => {
             labels: graphHours,
             datasets: [
               {
-                data: data?.glucose_list.map((obj) => obj.glucose_value),
+                data: [
+                  ...data?.glucose_list.map((obj) => obj.glucose_value),
+                  300,
+                ],
               },
             ],
           }}
@@ -38,27 +41,26 @@ const GlucoseReadingsChart = (props: Props) => {
           height={height}
           yAxisLabel=""
           yAxisSuffix=""
-          yAxisInterval={1} // optional, defaults to 1
+          yAxisInterval={50}
+          // optional, defaults to 1
           chartConfig={{
             backgroundColor: "white",
             decimalPlaces: 0, // optional, defaults to 2dp
             color: (s) => `black`,
             backgroundGradientFrom: "white",
             backgroundGradientTo: "white",
-            // labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
             style: {
               borderRadius: 16,
             },
             propsForDots: {
-              r: "3",
+              r: ".5",
               strokeWidth: "2",
               stroke: "silver",
             },
           }}
+          fromZero
           bezier={false}
           style={{
-            // marginVertical: 8,
-            // borderRadius: 16,
             backgroundColor: "white",
           }}
         />
