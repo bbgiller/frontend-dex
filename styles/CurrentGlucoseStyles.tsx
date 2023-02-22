@@ -7,11 +7,13 @@ export const CurrentGlucoseStyles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "white",
   },
   allText: {
     fontSize: 30,
     color: "black",
     textAlign: "center",
+    flexDirection: "column",
   },
   glucoseText: {
     fontWeight: "bold",

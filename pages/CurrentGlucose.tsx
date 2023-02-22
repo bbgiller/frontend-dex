@@ -33,13 +33,19 @@ const CurrentGlucose = () => {
             />
           </View>
 
-          <View style={{ justifyContent: "center", alignItems: "center" }}>
+          <View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
             <Text style={CurrentGlucoseStyles.allText}>
-              <Text>Glucose is {}</Text>
-              <Text style={CurrentGlucoseStyles.glucoseText}>
+              <Text
+                style={[CurrentGlucoseStyles.glucoseText, { fontSize: 60 }]}
+              >
                 {mmol ? data?.mmol : data?.glucose_value}
               </Text>
-              <Text> and {}</Text>
+              {"\n"}
               <Text>{data?.trend_description}</Text>
             </Text>
           </View>

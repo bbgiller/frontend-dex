@@ -24,6 +24,7 @@ export default function App() {
                 color={"black"}
               />
             ),
+            headerStyle: styles.header,
           }}
         />
         <Tab.Screen
@@ -39,7 +40,7 @@ export default function App() {
               />
             ),
 
-            headerStyle: { backgroundColor: "#f2f3f3" },
+            headerStyle: styles.header,
           }}
         />
       </Tab.Navigator>
@@ -54,5 +55,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     height: Dimensions.get("screen").height,
     width: Dimensions.get("screen").width,
+  },
+  header: {
+    backgroundColor: "#f2f3f3",
   },
 });
