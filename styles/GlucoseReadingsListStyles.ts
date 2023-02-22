@@ -30,4 +30,8 @@ export const GlucoseReadingsListStyles = StyleSheet.create({
     paddingBottom: 12,
     fontStyle: "italic",
   },
+  time: {
+    fontSize: 12,
+    color: "grey",
+  },
 });

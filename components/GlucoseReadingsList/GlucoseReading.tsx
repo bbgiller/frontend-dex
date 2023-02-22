@@ -17,7 +17,7 @@ const GlucoseReading = ({ glucoseValue, time }: Props) => {
   return (
     <View style={styles.listItems}>
       <Text style={{ fontSize: 15 }}>{glucoseValue}</Text>
-      <Text style={{ fontSize: 12, color: "grey" }}>{formattedTime}</Text>
+      <Text style={styles.time}>{formattedTime}</Text>
     </View>
   );
 };

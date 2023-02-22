@@ -4,6 +4,7 @@ import { LineChart } from "react-native-chart-kit";
 import useGlucoseReadingsList from "../GlucoseReadingsList/useGlucoseReadingsList";
 import { height, width } from "../../constants/Dimmensions";
 import { GlucoseReadingsObject } from "../../types/GlucoseReadingsListType";
+import { ChartConfig } from "../../constants/ChartConfig";
 
 type Props = {};
 
@@ -99,22 +100,7 @@ const GlucoseReadingsChart = (props: Props) => {
           yAxisLabel=""
           yAxisSuffix=""
           yAxisInterval={50}
-          chartConfig={{
-            backgroundColor: "white",
-            decimalPlaces: 0,
-            color: (s) => `black`,
-            backgroundGradientFrom: "white",
-            backgroundGradientTo: "white",
-            style: {
-              borderRadius: 16,
-            },
-            propsForDots: {
-              r: ".5",
-              strokeWidth: "2",
-              stroke: "silver",
-            },
-            fillShadowGradient: "rgba(52, 168, 83, 0.9)",
-          }}
+          chartConfig={ChartConfig}
           fromZero
           bezier={false}
           style={{
