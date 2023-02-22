@@ -18,6 +18,20 @@ const GlucoseReadingsChart = (props: Props) => {
     setInterval(interval);
   };
 
+  const FilterButton = (hours: number) => (
+    <TouchableOpacity
+      onPress={() => filterData(hours)}
+      style={{
+        backgroundColor: interval === hours ? "gray" : "lightgray",
+        padding: 5,
+        borderRadius: 5,
+        marginRight: 5,
+      }}
+    >
+      <Text> {hours} Hours</Text>
+    </TouchableOpacity>
+  );
+
   useEffect(() => {
     if (data) {
       const now = Date.now();
@@ -49,50 +63,8 @@ const GlucoseReadingsChart = (props: Props) => {
   }, [interval, data]);
   return (
     <View>
-      <View style={{ flexDirection: "row" }}>
-        <TouchableOpacity
-          onPress={() => filterData(24)}
-          style={{
-            backgroundColor: interval === 24 ? "gray" : "lightgray",
-            padding: 5,
-            borderRadius: 5,
-            marginRight: 5,
-          }}
-        >
-          <Text>Last 24 Hours</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => filterData(12)}
-          style={{
-            backgroundColor: interval === 12 ? "gray" : "lightgray",
-            padding: 5,
-            borderRadius: 5,
-            marginRight: 5,
-          }}
-        >
-          <Text>Last 12 Hours</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => filterData(6)}
-          style={{
-            backgroundColor: interval === 6 ? "gray" : "lightgray",
-            padding: 5,
-            borderRadius: 5,
-            marginRight: 5,
-          }}
-        >
-          <Text>Last 6 Hours</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => filterData(3)}
-          style={{
-            backgroundColor: interval === 3 ? "gray" : "lightgray",
-            padding: 5,
-            borderRadius: 5,
-          }}
-        >
-          <Text>Last 3 Hours</Text>
-        </TouchableOpacity>
+      <View style={{ flexDirection: "row", justifyContent: "center" }}>
+        {[24, 12, 6, 3].map((hour) => FilterButton(hour))}
       </View>
       {!loaded || !data ? (
         <Text>loading</Text>
