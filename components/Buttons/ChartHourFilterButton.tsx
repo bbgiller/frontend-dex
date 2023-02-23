@@ -14,6 +14,8 @@ const ChartHourFilterButton = ({
     style={{
       backgroundColor: interval === hours ? "rgb(77,209,70)" : "white",
       padding: 10,
+      marginTop: 10,
+      marginBottom: 10,
       borderRadius: 15,
 
       marginRight: 5,
