@@ -5,6 +5,7 @@ import useGlucoseReadingsList from "../GlucoseReadingsList/useGlucoseReadingsLis
 import { height, width } from "../../constants/Dimmensions";
 import { GlucoseReadingsObject } from "../../types/GlucoseReadingsListType";
 import { ChartConfig } from "../../constants/ChartConfig";
+import ChartHourFilterButton from "../Buttons/ChartHourFilterButton";
 
 type Props = {};
 
@@ -79,7 +80,13 @@ const GlucoseReadingsChart = (props: Props) => {
           backgroundColor: "white",
         }}
       >
-        {[3, 6, 12, 24].map((hour) => FilterButton(hour))}
+        {[3, 6, 12, 24].map((hour) => (
+          <ChartHourFilterButton
+            filterData={filterData}
+            hours={hour}
+            interval={interval}
+          />
+        ))}
       </View>
       {!loaded || !data ? (
         <Text>loading</Text>
