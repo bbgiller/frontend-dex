@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useCurrentGlucose from "../components/CurrentGlucose/useCurrentGlucose";
-import { Text, View } from "react-native";
+import { ActivityIndicator, Text, View } from "react-native";
 import { CurrentGlucoseStyles } from "../styles/CurrentGlucoseStyles";
 import UnitButton from "../components/Buttons/CurrentGlucose/UnitButton";
 
@@ -15,7 +15,7 @@ const CurrentGlucose = () => {
   return (
     <View style={CurrentGlucoseStyles.container}>
       {!loaded ? (
-        <Text>loading</Text>
+        <ActivityIndicator />
       ) : error ? (
         <Text>{error}</Text>
       ) : (

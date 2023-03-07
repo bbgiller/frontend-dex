@@ -10,13 +10,13 @@ async function setBaseLocalURL() {
     // If running on a physical device, use the device's local IP address
     const ipAlert = async () => {
       const ip = await Network.getIpAddressAsync();
-      BaseLocalURL = `http://${ip}:9874`;
+      BaseLocalURL = `http://${ip}:8000`;
       console.log(BaseLocalURL);
     };
     ipAlert();
   } else {
     // If running on a simulator, use localhost
-    BaseLocalURL = "http://localhost:9874";
+    BaseLocalURL = "http://localhost:8000";
   }
 }
 
