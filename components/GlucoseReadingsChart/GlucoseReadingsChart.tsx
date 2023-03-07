@@ -103,7 +103,7 @@ const GlucoseReadingsChart = (props: Props) => {
             ],
           }}
           width={width}
-          height={height}
+          height={height * 0.9}
           yAxisLabel=""
           yAxisSuffix=""
           yAxisInterval={50}
