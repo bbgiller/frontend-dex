@@ -3,6 +3,7 @@ import useCurrentGlucose from "../components/CurrentGlucose/useCurrentGlucose";
 import { ActivityIndicator, Text, View } from "react-native";
 import { CurrentGlucoseStyles } from "../styles/CurrentGlucoseStyles";
 import UnitButton from "../components/Buttons/CurrentGlucose/UnitButton";
+import { timeFormat } from "../constants/TimeFormat";
 
 const CurrentGlucose = () => {
   const { data, loaded, error } = useCurrentGlucose();
@@ -52,7 +53,7 @@ const CurrentGlucose = () => {
         </>
       )}
       <Text style={{ top: 200, color: "grey" }}>
-        Last Updated: {data?.time}
+        Last Updated: {data?.time ? timeFormat(data.time) : null}
       </Text>
     </View>
   );
