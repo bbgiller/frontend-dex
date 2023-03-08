@@ -1,6 +1,6 @@
 import React from "react";
 import useGlucoseReadingsList from "./useGlucoseReadingsList";
-import { View, Text, FlatList } from "react-native";
+import { View, Text, FlatList, ActivityIndicator } from "react-native";
 import { GlucoseReadingsListStyles as styles } from "../../styles/GlucoseReadingsListStyles";
 import GlucoseReading from "./GlucoseReading";
 // import { GlucoseRanges } from "../constants/GlucoseRangeColors";
@@ -32,7 +32,7 @@ const GlucoseReadingsList = (props: Props) => {
   return (
     <View style={styles.container}>
       {!loaded ? (
-        <Text>loading</Text>
+        <ActivityIndicator />
       ) : error ? (
         <Text>{error}</Text>
       ) : (

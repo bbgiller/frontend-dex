@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Modal,
+  ActivityIndicator,
+} from "react-native";
 import { LineChart } from "react-native-chart-kit";
 import useGlucoseReadingsList from "../GlucoseReadingsList/useGlucoseReadingsList";
 import { height, width } from "../../constants/Dimmensions";
@@ -15,6 +21,9 @@ const GlucoseReadingsChart = (props: Props) => {
   const [interval, setInterval] = useState(24); // default to last 24 hours
   const [filteredData, setFilteredData] = useState<GlucoseReadingsObject[]>([]);
   const [labels, setLabels] = useState<string[]>([]); // labels for the chart
+  const [modalVisible, setModalVisible] = useState(false);
+  const [glucoseValue, setGlucoseValue] = useState(0);
+  const [time, setTime] = useState("");
 
   const filterData = (interval: number) => {
     setInterval(interval);
@@ -42,6 +51,20 @@ const GlucoseReadingsChart = (props: Props) => {
     </TouchableOpacity>
   );
 
+  const handleDataPointClick = (data: {
+    index: number;
+    value: number;
+    dataset: any;
+    x: number;
+    y: number;
+    getColor: (opacity: number) => string;
+  }) => {
+    const glucoseValue = filteredData[data.index]?.glucose_value;
+    const time = filteredData[data.index]?.time;
+    setGlucoseValue(glucoseValue);
+    setTime(time);
+    setModalVisible(true);
+  };
   useEffect(() => {
     if (data) {
       const now = Date.now();
@@ -89,31 +112,67 @@ const GlucoseReadingsChart = (props: Props) => {
         ))}
       </View>
       {!loaded || !data ? (
-        <Text>loading</Text>
+        <ActivityIndicator />
       ) : error ? (
         <Text>{error}</Text>
       ) : (
-        <LineChart
-          data={{
-            labels: labels,
-            datasets: [
-              {
-                data: [...filteredData.map((obj) => obj.glucose_value), 300],
-              },
-            ],
-          }}
-          width={width}
-          height={height * 0.9}
-          yAxisLabel=""
-          yAxisSuffix=""
-          yAxisInterval={50}
-          chartConfig={ChartConfig}
-          fromZero
-          bezier={false}
-          style={{
-            backgroundColor: "white",
-          }}
-        />
+        <View style={{ position: "relative" }}>
+          <View style={{ zIndex: 1 }}>
+            <LineChart
+              data={{
+                labels: labels,
+                datasets: [
+                  {
+                    data: [
+                      ...filteredData.map((obj) => obj.glucose_value),
+                      300,
+                    ],
+                  },
+                ],
+              }}
+              width={width}
+              height={height * 0.9}
+              yAxisLabel=""
+              yAxisSuffix=""
+              yAxisInterval={50}
+              chartConfig={ChartConfig}
+              onDataPointClick={handleDataPointClick}
+              fromZero
+              withInnerLines={false}
+              bezier={false}
+              style={{
+                backgroundColor: "white",
+              }}
+            />
+          </View>
+          <View style={{ position: "absolute", top: 0, left: 0 }}>
+            <Modal visible={modalVisible}>
+              <View
+                style={{
+                  position: "absolute",
+                  top: "10%",
+                  left: "10%",
+                  height: 0.1 * height,
+                  width: 0.3 * width,
+                }}
+              >
+                <Text>Glucose Value: {glucoseValue}</Text>
+                <Text>Time: {time}</Text>
+                <TouchableOpacity
+                  onPress={() => setModalVisible(false)}
+                  style={{
+                    backgroundColor: "rgb(77,209,70)",
+                    padding: 10,
+                    borderRadius: 15,
+                    marginTop: 20,
+                  }}
+                >
+                  <Text style={{ color: "white" }}>Close</Text>
+                </TouchableOpacity>
+              </View>
+            </Modal>
+          </View>
+        </View>
       )}
     </View>
   );

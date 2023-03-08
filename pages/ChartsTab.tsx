@@ -35,7 +35,7 @@ const ChartsTab = ({ navigation }: Props) => {
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
-      headerTitle: "Charts",
+      headerTitle: "",
       headerRight: () => <SwitchButton />,
     });
   }, [navigation, showGraph]);

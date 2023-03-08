@@ -1,5 +1,5 @@
 export const timeFormat = (time: string) => {
-  const formattedTime = new Date(time).toLocaleString("en-US", {
+  const formattedTime = new Date(time + "Z").toLocaleString("en-US", {
     month: "long",
     day: "numeric",
     hour: "2-digit",

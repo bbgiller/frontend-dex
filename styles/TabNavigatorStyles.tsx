@@ -9,6 +9,7 @@ export const tabNavigatorStyles = StyleSheet.create({
     width: Dimensions.get("screen").width,
   },
   header: {
-    backgroundColor: "#f2f3f3",
+    // backgroundColor: "#f2f3f3",
+    backgroundColor: "white",
   },
 });
