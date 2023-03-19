@@ -28,7 +28,8 @@
     "react-native-vector-icons": "^9.2.0",
     "react-native-web": "~0.18.7",
     "react-navigation": "^4.4.4",
-    "recharts": "^2.4.3"
+    "recharts": "^2.4.3",
+    "@react-native-community/datetimepicker": "6.2.0"
   },
   "resolutions": {
     "**/**/react": "18.0.0"
