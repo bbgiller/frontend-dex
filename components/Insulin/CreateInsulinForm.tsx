@@ -1,13 +1,6 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  Button,
-  TextInput,
-  StyleSheet,
-  TouchableOpacity,
-  Platform,
-} from "react-native";
+import { View, Text, Button, TextInput, TouchableOpacity } from "react-native";
+import { CreatInsulinFormStyles as styles } from "../../styles/CreateInsulinFormStyles";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import useCreateInsulin from "./useCreateInsulin";
 
@@ -106,65 +99,5 @@ const CreateInsulinForm = () => {
     </View>
   );
 };
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "stretch",
-    padding: 20,
-  },
-  label: {
-    fontSize: 18,
-    fontWeight: "bold",
-    marginTop: 20,
-    marginBottom: 5,
-  },
-  input: {
-    height: 40,
-    borderColor: "gray",
-    borderWidth: 1,
-    borderRadius: 5,
-    paddingHorizontal: 10,
-    marginBottom: 20,
-  },
-  dateButton: {
-    height: 40,
-    backgroundColor: "lightgray",
-    borderRadius: 5,
-    paddingHorizontal: 10,
-    justifyContent: "center",
-    marginBottom: 20,
-  },
-  dateButtonText: {
-    fontSize: 16,
-  },
-  buttonContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 20,
-  },
-  typeButton: {
-    flex: 1,
-    height: 40,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "lightgray",
-    borderRadius: 5,
-    marginHorizontal: 10,
-  },
-  activeTypeButton: {
-    backgroundColor: "green",
-  },
-  disabledTypeButton: {
-    opacity: 0.5,
-  },
-  typeButtonText: {
-    fontSize: 16,
-    color: "white",
-  },
-  submitButton: {
-    height: 40,
-  },
-});
 
 export default CreateInsulinForm;
