@@ -3,7 +3,7 @@ import { height } from "../constants/Dimmensions";
 export const CreatInsulinFormStyles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f2f2f3",
+    backgroundColor: "white",
     justifyContent: "center",
     // alignItems: "center",
     padding: 20,

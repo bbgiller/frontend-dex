@@ -14,6 +14,7 @@ const TabNavigator = () => {
   const CurrentGlucoseScreen = () => (
     <CurrentGlucose data={data} loaded={loaded} error={error} />
   );
+
   return (
     <Tab.Navigator>
       <Tab.Screen

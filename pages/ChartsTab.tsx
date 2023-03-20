@@ -4,6 +4,8 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 
 import GlucoseReadingsList from "../components/GlucoseReadingsList/GlucoseReadingsList";
 import GlucoseReadingsChart from "../components/GlucoseReadingsChart/GlucoseReadingsChart";
+import { GlucoseDataType } from "../types/GlucoseDataType";
+import useCurrentGlucose from "../components/CurrentGlucose/useCurrentGlucose";
 
 type Props = {
   navigation: any;
@@ -11,7 +13,7 @@ type Props = {
 
 const ChartsTab = ({ navigation }: Props) => {
   const [showGraph, setShowGraph] = useState(false);
-
+  const { data, loaded, error } = useCurrentGlucose();
   const toggleView = () => {
     setShowGraph(!showGraph);
   };
@@ -35,7 +37,12 @@ const ChartsTab = ({ navigation }: Props) => {
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
-      headerTitle: "",
+      headerTitle:
+        data?.glucose_value && data.trend_arrow
+          ? data?.glucose_value.toString() + data?.trend_arrow
+          : "",
+      headerTitleStyle: { fontSize: 30 },
+
       headerRight: () => <SwitchButton />,
     });
   }, [navigation, showGraph]);

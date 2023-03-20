@@ -3,13 +3,30 @@ import { height, width } from "../constants/Dimmensions";
 
 export const GlucoseReadingsListStyles = StyleSheet.create({
   container: {
-    alignItems: "center",
+    flex: 1,
+    backgroundColor: "#f2f2f3",
+    justifyContent: "center",
+    // alignItems: "center",
+    paddingTop: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
   },
   flatList: {
+    flexGrow: 1,
     backgroundColor: "white",
-    paddingTop: 20,
-    width: width * 0.9,
-    borderRadius: 16,
+    // height: height * 0.7,
+    borderRadius: 30,
+    padding: 20,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
+    overflow: "scroll",
   },
   listItems: {
     flexDirection: "row",
@@ -31,7 +48,7 @@ export const GlucoseReadingsListStyles = StyleSheet.create({
     fontStyle: "italic",
   },
   time: {
-    fontSize: 12,
+    fontSize: 17,
     color: "grey",
   },
 });

@@ -1,8 +1,15 @@
 import React from "react";
 import useGlucoseReadingsList from "./useGlucoseReadingsList";
-import { View, Text, FlatList, ActivityIndicator } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  ActivityIndicator,
+  ScrollView,
+} from "react-native";
 import { GlucoseReadingsListStyles as styles } from "../../styles/GlucoseReadingsListStyles";
 import GlucoseReading from "./GlucoseReading";
+import { height, width } from "../../constants/Dimmensions";
 // import { GlucoseRanges } from "../constants/GlucoseRangeColors";
 type Props = {};
 
@@ -21,14 +28,22 @@ const GlucoseReadingsList = (props: Props) => {
   const { data, loaded, error } = useGlucoseReadingsList();
   const glucoseReadings = data?.glucose_list;
 
-  const renderItem = ({
-    item,
-  }: {
-    item: { glucose_value: number; time: string };
-  }) => {
-    const { glucose_value, time } = item;
-    return <GlucoseReading glucoseValue={glucose_value} time={time} />;
-  };
+  const renderGlucoseReadings = () =>
+    glucoseReadings?.map(({ glucose_value, time }) => (
+      <View>
+        <GlucoseReading glucoseValue={glucose_value} time={time} key={time} />
+        <View
+          style={{
+            alignSelf: "center",
+            width: width * 0.8,
+            backgroundColor: "#f2f2f3",
+            height: height * 0.001,
+            marginTop: 5,
+            marginBottom: 5,
+          }}
+        ></View>
+      </View>
+    ));
   return (
     <View style={styles.container}>
       {!loaded ? (
@@ -36,16 +51,20 @@ const GlucoseReadingsList = (props: Props) => {
       ) : error ? (
         <Text>{error}</Text>
       ) : (
-        <FlatList
-          ListHeaderComponent={headerComponent}
-          contentContainerStyle={styles.flatList}
-          ItemSeparatorComponent={() => (
-            <View style={styles.itemSeparator}></View>
-          )}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.time}
-          data={glucoseReadings}
-        ></FlatList>
+        <View
+        // style={{
+        //   backgroundColor: "green",
+        //   height: height * 0.7,
+        //   width: width,
+        //   // borderRadius: 30,
+        // }}
+        >
+          {headerComponent}
+
+          <ScrollView contentContainerStyle={[styles.flatList, {}]}>
+            {renderGlucoseReadings()}
+          </ScrollView>
+        </View>
       )}
     </View>
   );
