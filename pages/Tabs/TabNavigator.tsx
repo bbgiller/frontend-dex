@@ -5,14 +5,21 @@ import CurrentGlucose from "../CurrentGlucose";
 import ChartsTab from "../ChartsTab";
 import { tabNavigatorStyles as styles } from "../../styles/TabNavigatorStyles";
 import CreateInsulinForm from "../../components/Insulin/CreateInsulinForm";
+import useCurrentGlucose from "../../components/CurrentGlucose/useCurrentGlucose";
+import { Text, View } from "react-native";
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
+  const { data, loaded, error } = useCurrentGlucose();
+  const CurrentGlucoseScreen = () => (
+    <CurrentGlucose data={data} loaded={loaded} error={error} />
+  );
   return (
     <Tab.Navigator>
       <Tab.Screen
         name="Glucose"
-        component={CurrentGlucose}
+        component={CurrentGlucoseScreen}
+        initialParams={{ data, loaded, error }}
         options={{
           headerShown: false,
 
@@ -46,6 +53,11 @@ const TabNavigator = () => {
         name="Insulin"
         component={CreateInsulinForm}
         options={{
+          headerTitle:
+            data?.glucose_value && data.trend_arrow
+              ? data?.glucose_value.toString() + data?.trend_arrow
+              : "",
+          headerTitleStyle: { fontSize: 30 },
           tabBarIcon: ({ focused, color, size }) => (
             <Ionicons
               name="ios-flask-outline"
@@ -54,6 +66,7 @@ const TabNavigator = () => {
               color={focused ? "green" : "black"}
             />
           ),
+
           headerStyle: styles.header,
         }}
       />

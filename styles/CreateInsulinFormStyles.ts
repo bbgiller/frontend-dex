@@ -1,10 +1,27 @@
 import { StyleSheet } from "react-native";
+import { height } from "../constants/Dimmensions";
 export const CreatInsulinFormStyles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#f2f2f3",
     justifyContent: "center",
-    alignItems: "stretch",
+    // alignItems: "center",
     padding: 20,
+  },
+  form: {
+    backgroundColor: "white",
+    height: height * 0.45,
+    borderRadius: 30,
+    padding: 20,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
   },
   label: {
     fontSize: 18,

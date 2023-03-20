@@ -4,11 +4,20 @@ import { ActivityIndicator, Text, View } from "react-native";
 import { CurrentGlucoseStyles } from "../styles/CurrentGlucoseStyles";
 import UnitButton from "../components/Buttons/CurrentGlucose/UnitButton";
 import { timeFormat } from "../constants/TimeFormat";
+import { GlucoseDataType } from "../types/GlucoseDataType";
 
-const CurrentGlucose = () => {
-  const { data, loaded, error } = useCurrentGlucose();
+interface CurrentGlucoseProps {
+  data: GlucoseDataType | null;
+  loaded: boolean;
+  error: string;
+}
+
+const CurrentGlucose = (props: CurrentGlucoseProps) => {
+  const { data, loaded, error } = props;
   const [mmol, setMmol] = useState(false);
-
+  useEffect(() => {
+    // This will trigger a re-render whenever the data prop changes
+  }, [data]);
   const handlePress = (unit: string) => {
     setMmol(unit === "mmol");
   };

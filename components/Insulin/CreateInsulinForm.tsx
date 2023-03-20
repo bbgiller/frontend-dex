@@ -46,56 +46,61 @@ const CreateInsulinForm = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>Dose:</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Enter dose"
-        value={dose}
-        onChangeText={setDose}
-        keyboardType="numeric"
-      />
-      <Text style={styles.label}>Time:</Text>
-      <TouchableOpacity style={styles.dateButton} onPress={showDateTimePicker}>
-        <Text style={styles.dateButtonText}>{time.toLocaleString()}</Text>
-      </TouchableOpacity>
-      <DateTimePickerModal
-        isVisible={isDateTimePickerVisible}
-        mode="datetime"
-        onConfirm={handleDatePicked}
-        onCancel={hideDateTimePicker}
-      />
+      <View style={styles.form}>
+        <Text style={styles.label}>Dose:</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Enter dose"
+          value={dose}
+          onChangeText={setDose}
+          keyboardType="numeric"
+        />
+        <Text style={styles.label}>Time:</Text>
+        <TouchableOpacity
+          style={styles.dateButton}
+          onPress={showDateTimePicker}
+        >
+          <Text style={styles.dateButtonText}>{time.toLocaleString()}</Text>
+        </TouchableOpacity>
+        <DateTimePickerModal
+          isVisible={isDateTimePickerVisible}
+          mode="datetime"
+          onConfirm={handleDatePicked}
+          onCancel={hideDateTimePicker}
+        />
 
-      <Text style={styles.label}>Type:</Text>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={[
-            styles.typeButton,
-            type === "short" && styles.activeTypeButton,
-            !type && styles.disabledTypeButton,
-          ]}
-          // disabled={!type}
-          onPress={() => setType("short")}
-        >
-          <Text style={styles.typeButtonText}>Short</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[
-            styles.typeButton,
-            type === "long" && styles.activeTypeButton,
-            !type && styles.disabledTypeButton,
-          ]}
-          // disabled={!type}
-          onPress={() => setType("long")}
-        >
-          <Text style={styles.typeButtonText}>Long</Text>
-        </TouchableOpacity>
+        <Text style={styles.label}>Type:</Text>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={[
+              styles.typeButton,
+              type === "short" && styles.activeTypeButton,
+              !type && styles.disabledTypeButton,
+            ]}
+            // disabled={!type}
+            onPress={() => setType("short")}
+          >
+            <Text style={styles.typeButtonText}>Short</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[
+              styles.typeButton,
+              type === "long" && styles.activeTypeButton,
+              !type && styles.disabledTypeButton,
+            ]}
+            // disabled={!type}
+            onPress={() => setType("long")}
+          >
+            <Text style={styles.typeButtonText}>Long</Text>
+          </TouchableOpacity>
+        </View>
+        <Button
+          style={styles.submitButton}
+          title="Create Insulin"
+          onPress={handleSubmit}
+          disabled={loading || notAllFields}
+        />
       </View>
-      <Button
-        style={styles.submitButton}
-        title="Create Insulin"
-        onPress={handleSubmit}
-        disabled={loading || notAllFields}
-      />
     </View>
   );
 };
