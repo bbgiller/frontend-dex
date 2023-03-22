@@ -5,6 +5,7 @@ import { CurrentGlucoseStyles } from "../styles/CurrentGlucoseStyles";
 import UnitButton from "../components/Buttons/CurrentGlucose/UnitButton";
 import { timeFormat } from "../constants/TimeFormat";
 import { GlucoseDataType } from "../types/GlucoseDataType";
+import { height, width } from "../constants/Dimmensions";
 
 interface CurrentGlucoseProps {
   data: GlucoseDataType | null;
@@ -43,21 +44,23 @@ const CurrentGlucose = (props: CurrentGlucoseProps) => {
             />
           </View>
 
-          <View
-            style={{
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Text style={CurrentGlucoseStyles.allText}>
-              <Text
-                style={[CurrentGlucoseStyles.glucoseText, { fontSize: 60 }]}
-              >
-                {mmol ? data?.mmol : data?.glucose_value}
+          <View style={{}}>
+            <View
+              style={{
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Text style={CurrentGlucoseStyles.allText}>
+                <Text
+                  style={[CurrentGlucoseStyles.glucoseText, { fontSize: 60 }]}
+                >
+                  {mmol ? data?.mmol : data?.glucose_value}
+                </Text>
+                {"\n"}
+                <Text>{data?.trend_description}</Text>
               </Text>
-              {"\n"}
-              <Text>{data?.trend_description}</Text>
-            </Text>
+            </View>
           </View>
         </>
       )}

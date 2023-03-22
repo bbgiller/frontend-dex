@@ -7,6 +7,7 @@ import { tabNavigatorStyles as styles } from "../../styles/TabNavigatorStyles";
 import CreateInsulinForm from "../../components/Insulin/CreateInsulinForm";
 import useCurrentGlucose from "../../components/CurrentGlucose/useCurrentGlucose";
 import { Text, View } from "react-native";
+import InsulinsList from "../../components/Insulin/InsulinsList";
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
@@ -52,7 +53,7 @@ const TabNavigator = () => {
       />
       <Tab.Screen
         name="Insulin"
-        component={CreateInsulinForm}
+        component={InsulinsList}
         options={{
           headerTitle:
             data?.glucose_value && data.trend_arrow

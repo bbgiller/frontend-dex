@@ -11,7 +11,26 @@ const GlucoseReading = ({ glucoseValue, time }: Props) => {
   const formattedTime = timeFormat(time);
   return (
     <View style={styles.listItems}>
-      <Text style={{ fontSize: 17 }}>{glucoseValue}</Text>
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+        }}
+      >
+        <View
+          style={{
+            ...styles.circle,
+            backgroundColor:
+              glucoseValue <= 80
+                ? "red"
+                : glucoseValue >= 180
+                ? "yellow"
+                : "green",
+          }}
+        ></View>
+        <Text style={{ fontSize: 17 }}>{glucoseValue}</Text>
+      </View>
+
       <Text style={styles.time}>{formattedTime}</Text>
     </View>
   );

@@ -4,12 +4,21 @@ import { height, width } from "../constants/Dimmensions";
 export const GlucoseReadingsListStyles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f2f2f3",
+    backgroundColor: "white",
     justifyContent: "center",
     // alignItems: "center",
     paddingTop: 10,
     paddingLeft: 20,
     paddingRight: 20,
+  },
+  listContainer: {
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
   },
   flatList: {
     flexGrow: 1,
@@ -35,10 +44,12 @@ export const GlucoseReadingsListStyles = StyleSheet.create({
     width: width * 0.9,
   },
   itemSeparator: {
-    padding: 1,
-    height: 2,
-    backgroundColor: "grey",
-    opacity: 0.1,
+    alignSelf: "center",
+    width: width * 0.8,
+    backgroundColor: "#f2f2f3",
+    height: height * 0.001,
+    marginTop: 5,
+    marginBottom: 5,
   },
   columnHeader: {
     textAlign: "center",
@@ -50,5 +61,11 @@ export const GlucoseReadingsListStyles = StyleSheet.create({
   time: {
     fontSize: 17,
     color: "grey",
+  },
+  circle: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    marginRight: 5,
   },
 });
