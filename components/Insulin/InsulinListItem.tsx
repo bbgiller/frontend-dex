@@ -11,7 +11,10 @@ type Props = {
 };
 
 const InsulinListItem = ({ id, user_id, dose, time, type }: Props) => {
-  const formattedTime = timeFormat(time);
+  const newTime = timeFormat(time);
+  console.log(time);
+  console.log(newTime);
+
   console.log(user_id, dose);
   return (
     <View style={styles.listItems}>
@@ -22,6 +25,7 @@ const InsulinListItem = ({ id, user_id, dose, time, type }: Props) => {
         }}
       >
         <Text style={{ fontSize: 17 }}>{dose}</Text>
+        <Text style={{ fontSize: 17 }}>{newTime}</Text>
       </View>
 
       {/* <Text style={styles.time}>{formattedTime}</Text> */}
