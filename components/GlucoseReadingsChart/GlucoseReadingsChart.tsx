@@ -35,28 +35,6 @@ const GlucoseReadingsChart = (props: Props) => {
     setInterval(interval);
   };
 
-  const FilterButton = (hours: number) => (
-    <TouchableOpacity
-      onPress={() => filterData(hours)}
-      style={{
-        backgroundColor: interval === hours ? "rgb(77,209,70)" : "white",
-        padding: 10,
-        borderRadius: 15,
-
-        marginRight: 5,
-      }}
-    >
-      <Text
-        style={{
-          color: interval === hours ? "white" : "black",
-          fontWeight: interval === hours ? "bold" : undefined,
-        }}
-      >
-        {hours} Hours
-      </Text>
-    </TouchableOpacity>
-  );
-
   const handleDataPointClick = (data: {
     index: number;
     value: number;

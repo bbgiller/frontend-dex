@@ -27,7 +27,8 @@ const ChartHourFilterButton = ({
         fontWeight: interval === hours ? "bold" : undefined,
       }}
     >
-      {hours} Hours
+      {hours}
+      {interval === hours ? " Hours" : ""}
     </Text>
   </TouchableOpacity>
 );
