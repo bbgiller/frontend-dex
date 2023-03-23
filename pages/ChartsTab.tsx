@@ -24,11 +24,14 @@ const ChartsTab = ({ navigation }: Props) => {
 
   const ExitButton = () => (
     <TouchableOpacity
-      style={{ alignItems: "center" }}
+      style={{
+        padding: 5,
+        borderRadius: 5,
+      }}
       onPress={() => setClickedPoint(null)}
     >
       <Ionicons
-        style={{ right: 35, top: 5 }}
+        style={{ alignSelf: "flex-end", right: 20 }}
         name="ios-close-circle"
         size={25}
       />
@@ -67,9 +70,8 @@ const ChartsTab = ({ navigation }: Props) => {
       },
       headerRight: () => (
         <View style={{ flexDirection: "row" }}>
-          {clickedPoint ? <ExitButton /> : null}
           <View style={{ alignSelf: "flex-end" }}>
-            <SwitchButton />
+            {clickedPoint ? <ExitButton /> : <SwitchButton />}
           </View>
         </View>
       ),
