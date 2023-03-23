@@ -78,7 +78,8 @@ const GlucoseReadingsChart = (props: Props) => {
 
         return time >= now - intervalMilliseconds;
       });
-      setFilteredData(filteredData);
+      console.log(filteredData);
+      setFilteredData(filteredData.reverse());
 
       // set labels for the chart
       const newLabels = [];
