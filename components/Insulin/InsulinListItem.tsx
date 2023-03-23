@@ -25,10 +25,9 @@ const InsulinListItem = ({ id, user_id, dose, time, type }: Props) => {
         }}
       >
         <Text style={{ fontSize: 17 }}>{dose}</Text>
-        <Text style={{ fontSize: 17 }}>{newTime}</Text>
       </View>
 
-      {/* <Text style={styles.time}>{formattedTime}</Text> */}
+      <Text style={styles.time}>{newTime}</Text>
     </View>
   );
 };

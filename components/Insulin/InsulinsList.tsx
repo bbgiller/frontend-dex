@@ -15,8 +15,11 @@ type Props = {};
 const InsulinsList = (props: Props) => {
   const { data, loaded, error } = useGetInsulins();
   const insulins = data?.insulins_list;
+  const sortedInsulins = insulins?.sort((a, b) => {
+    return new Date(a.time) - new Date(b.time);
+  });
   const renderInsulins = () =>
-    insulins?.map(({ id, dose, time, type }) => (
+    sortedInsulins?.map(({ id, dose, time, type }) => (
       <View key={id}>
         <InsulinListItem
           id={id}
@@ -35,8 +38,6 @@ const InsulinsList = (props: Props) => {
         <Text>{error}</Text>
       ) : (
         <View style={styles.listContainer}>
-          {/* {headerComponent} */}
-
           <ScrollView contentContainerStyle={[styles.flatList, {}]}>
             {renderInsulins()}
           </ScrollView>
