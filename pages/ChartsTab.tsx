@@ -14,6 +14,10 @@ type Props = {
 const ChartsTab = ({ navigation }: Props) => {
   const [showGraph, setShowGraph] = useState(false);
   const { data, loaded, error } = useCurrentGlucose();
+  const [clickedPoint, setClickedPoint] = useState<{
+    glucoseValue: number;
+    time: string;
+  } | null>(null);
   const toggleView = () => {
     setShowGraph(!showGraph);
   };
@@ -35,19 +39,29 @@ const ChartsTab = ({ navigation }: Props) => {
     </TouchableOpacity>
   );
 
+  const headerTitle = clickedPoint
+    ? `${clickedPoint.glucoseValue} ${clickedPoint.time}`
+    : data?.glucose_value && data.trend_arrow
+    ? data?.glucose_value.toString() + data?.trend_arrow
+    : "";
+
   React.useLayoutEffect(() => {
     navigation.setOptions({
-      headerTitle:
-        data?.glucose_value && data.trend_arrow
-          ? data?.glucose_value.toString() + data?.trend_arrow
-          : "",
+      headerTitle: headerTitle,
       headerTitleStyle: { fontSize: 30 },
-
       headerRight: () => <SwitchButton />,
     });
-  }, [navigation, showGraph]);
+  }, [navigation, showGraph, clickedPoint]);
 
-  return !showGraph ? <GlucoseReadingsList /> : <GlucoseReadingsChart />;
+  const handleDataPointClick = (glucoseValue: number, time: string) => {
+    setClickedPoint({ glucoseValue, time });
+  };
+
+  return !showGraph ? (
+    <GlucoseReadingsList />
+  ) : (
+    <GlucoseReadingsChart handleDataPointClick={handleDataPointClick} />
+  );
 };
 
 export default ChartsTab;
