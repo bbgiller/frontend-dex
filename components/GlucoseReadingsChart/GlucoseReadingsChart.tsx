@@ -81,12 +81,14 @@ const GlucoseReadingsChart = (props: Props) => {
   }, [interval, data]);
 
   return (
-    <View>
+    <View style={{ backgroundColor: "white", height: height }}>
       <View
         style={{
           flexDirection: "row",
+          // alignItems: "flex-start",
           justifyContent: "center",
           backgroundColor: "white",
+          marginTop: 40,
         }}
       >
         {[3, 6, 12, 24].map((hour) => (
@@ -102,8 +104,26 @@ const GlucoseReadingsChart = (props: Props) => {
       ) : error ? (
         <Text>{error}</Text>
       ) : (
-        <View style={{ position: "relative" }}>
-          <View style={{ zIndex: 1 }}>
+        <View style={{ alignItems: "center", position: "relative" }}>
+          <View
+            style={{
+              width: width * 0.9,
+              zIndex: 1,
+              backgroundColor: "white",
+              // height: height * 0.45,
+              borderRadius: 30,
+              padding: 20,
+              shadowColor: "#000",
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.25,
+              shadowRadius: 3.84,
+
+              elevation: 5,
+            }}
+          >
             <LineChart
               data={{
                 labels: labels,
@@ -116,8 +136,8 @@ const GlucoseReadingsChart = (props: Props) => {
                   },
                 ],
               }}
-              width={width}
-              height={height * 0.9}
+              width={width * 0.85}
+              height={height * 0.5}
               yAxisLabel=""
               yAxisSuffix=""
               yAxisInterval={50}
@@ -125,26 +145,11 @@ const GlucoseReadingsChart = (props: Props) => {
               onDataPointClick={handleDataPointClick}
               fromZero
               withInnerLines={false}
-              bezier={false}
+              bezier={true}
               style={{
                 backgroundColor: "white",
               }}
             />
-          </View>
-          <View style={{ position: "absolute", top: 0, left: 0 }}>
-            <Text>Glucose Value: {glucoseValue}</Text>
-            <Text>Time: {time}</Text>
-            <TouchableOpacity
-              onPress={() => setModalVisible(false)}
-              style={{
-                backgroundColor: "rgb(77,209,70)",
-                padding: 10,
-                borderRadius: 15,
-                marginTop: 20,
-              }}
-            >
-              <Text style={{ color: "white" }}>Close</Text>
-            </TouchableOpacity>
           </View>
         </View>
       )}

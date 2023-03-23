@@ -8,7 +8,7 @@ export const ChartConfig = {
     borderRadius: 16,
   },
   propsForDots: {
-    r: ".5",
+    r: "1",
     strokeWidth: "2",
     stroke: "silver",
   },
