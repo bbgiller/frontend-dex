@@ -13,7 +13,7 @@ import { height, width } from "../../constants/Dimmensions";
 
 const GlucoseReadingsList = () => {
   const { data, loaded, error } = useGlucoseReadingsList();
-  const glucoseReadings = data?.glucose_list;
+  const glucoseReadings = data?.glucose_list.reverse();
   const renderGlucoseReadings = () =>
     glucoseReadings?.map(({ glucose_value, time }) => (
       <View>

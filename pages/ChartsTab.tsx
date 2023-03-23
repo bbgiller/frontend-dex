@@ -53,13 +53,7 @@ const ChartsTab = ({ navigation }: Props) => {
   );
 
   const headerTitle = clickedPoint
-    ? `${clickedPoint.glucoseValue} at ${new Date(
-        clickedPoint.time
-      ).toLocaleTimeString("en-us", {
-        timeZone: "America/New_York",
-        hour: "2-digit",
-        minute: "2-digit",
-      })}`
+    ? `${clickedPoint.glucoseValue} at ${clickedPoint.time}`
     : data?.glucose_value && data.trend_arrow
     ? data?.glucose_value.toString() + data?.trend_arrow
     : "";

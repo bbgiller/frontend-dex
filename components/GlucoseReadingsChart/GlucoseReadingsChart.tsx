@@ -12,6 +12,7 @@ import { height, width } from "../../constants/Dimmensions";
 import { GlucoseReadingsObject } from "../../types/GlucoseReadingsListType";
 import { ChartConfig } from "../../constants/ChartConfig";
 import ChartHourFilterButton from "../Buttons/ChartHourFilterButton";
+import { timeFormat } from "../../constants/TimeFormat";
 
 type Props = {
   handleDataPointClick: (glucoseValue: number, time: string) => void;
@@ -65,7 +66,9 @@ const GlucoseReadingsChart = (props: Props) => {
     getColor: (opacity: number) => string;
   }) => {
     const glucoseValue = filteredData[data.index]?.glucose_value;
-    const time = filteredData[data.index]?.time;
+    const time = timeFormat(filteredData[data.index]?.time, true);
+
+    console.log(time);
     props.handleDataPointClick(glucoseValue, time);
   };
   useEffect(() => {
@@ -78,8 +81,8 @@ const GlucoseReadingsChart = (props: Props) => {
 
         return time >= now - intervalMilliseconds;
       });
-      console.log(filteredData);
-      setFilteredData(filteredData.reverse());
+      // console.log(filteredData);
+      setFilteredData(filteredData);
 
       // set labels for the chart
       const newLabels = [];
