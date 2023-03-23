@@ -27,12 +27,20 @@ const GlucoseReadingsChart = (props: Props) => {
   const [interval, setInterval] = useState(24); // default to last 24 hours
   const [filteredData, setFilteredData] = useState<GlucoseReadingsObject[]>([]);
   const [labels, setLabels] = useState<string[]>([]); // labels for the chart
-  const [modalVisible, setModalVisible] = useState(false);
-  const [glucoseValue, setGlucoseValue] = useState(0);
-  const [time, setTime] = useState("");
+  const [average, setAverage] = useState(0); //average for given interval
 
   const filterData = (interval: number) => {
     setInterval(interval);
+  };
+
+  const calculateAverage = () => {
+    let currSum = 0;
+    let length = 0;
+    filteredData.forEach((obj) => {
+      currSum += obj.glucose_value;
+      length++;
+    });
+    setAverage(currSum / length);
   };
 
   const handleDataPointClick = (data: {
@@ -53,13 +61,14 @@ const GlucoseReadingsChart = (props: Props) => {
     if (data) {
       const now = Date.now();
       const intervalMilliseconds = interval * 60 * 60 * 1000;
+
       const filteredData = data?.glucose_list.filter((obj) => {
         const time = new Date(obj.time).getTime();
-        // console.log(new Date(time), new Date(now - intervalMilliseconds));
 
         return time >= now - intervalMilliseconds;
       });
-      // console.log(filteredData);
+      calculateAverage();
+      console.log(`average:${average}`);
       setFilteredData(filteredData);
 
       // set labels for the chart
@@ -150,6 +159,31 @@ const GlucoseReadingsChart = (props: Props) => {
                 backgroundColor: "white",
               }}
             />
+          </View>
+          <View
+            style={{
+              width: width * 0.9,
+              zIndex: 1,
+              backgroundColor: "white",
+              // height: height * 0.45,
+              borderRadius: 30,
+              padding: 20,
+              shadowColor: "#000",
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.25,
+              shadowRadius: 3.84,
+
+              elevation: 5,
+              marginTop: 50,
+            }}
+          >
+            <Text>
+              Your average glucose for the past {interval} hours is{" "}
+              {average.toFixed()}
+            </Text>
           </View>
         </View>
       )}
