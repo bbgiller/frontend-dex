@@ -22,6 +22,19 @@ const ChartsTab = ({ navigation }: Props) => {
     setShowGraph(!showGraph);
   };
 
+  const ExitButton = () => (
+    <TouchableOpacity
+      style={{ alignItems: "center" }}
+      onPress={() => setClickedPoint(null)}
+    >
+      <Ionicons
+        style={{ right: 35, top: 5 }}
+        name="ios-close-circle"
+        size={25}
+      />
+    </TouchableOpacity>
+  );
+
   const SwitchButton = () => (
     <TouchableOpacity
       style={{
@@ -40,7 +53,9 @@ const ChartsTab = ({ navigation }: Props) => {
   );
 
   const headerTitle = clickedPoint
-    ? `${clickedPoint.glucoseValue} ${clickedPoint.time}`
+    ? `${clickedPoint.glucoseValue} at ${new Date(
+        clickedPoint.time
+      ).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}`
     : data?.glucose_value && data.trend_arrow
     ? data?.glucose_value.toString() + data?.trend_arrow
     : "";
@@ -48,8 +63,18 @@ const ChartsTab = ({ navigation }: Props) => {
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: headerTitle,
-      headerTitleStyle: { fontSize: 30 },
-      headerRight: () => <SwitchButton />,
+      headerTitleStyle: {
+        fontSize: 30,
+        color: clickedPoint ? "grey" : "black",
+      },
+      headerRight: () => (
+        <View style={{ flexDirection: "row" }}>
+          {clickedPoint ? <ExitButton /> : null}
+          <View style={{ alignSelf: "flex-end" }}>
+            <SwitchButton />
+          </View>
+        </View>
+      ),
     });
   }, [navigation, showGraph, clickedPoint]);
 
