@@ -14,9 +14,26 @@ type Props = {
 const ChartsTab = ({ navigation }: Props) => {
   const [showGraph, setShowGraph] = useState(false);
   const { data, loaded, error } = useCurrentGlucose();
+  const [clickedPoint, setClickedPoint] = useState<{
+    glucoseValue: number;
+    time: string;
+  } | null>(null);
   const toggleView = () => {
     setShowGraph(!showGraph);
   };
+
+  const ExitButton = () => (
+    <TouchableOpacity
+      style={{ alignItems: "center" }}
+      onPress={() => setClickedPoint(null)}
+    >
+      <Ionicons
+        style={{ right: 35, top: 5 }}
+        name="ios-close-circle"
+        size={25}
+      />
+    </TouchableOpacity>
+  );
 
   const SwitchButton = () => (
     <TouchableOpacity
@@ -35,19 +52,41 @@ const ChartsTab = ({ navigation }: Props) => {
     </TouchableOpacity>
   );
 
+  const headerTitle = clickedPoint
+    ? `${clickedPoint.glucoseValue} at ${new Date(
+        clickedPoint.time
+      ).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}`
+    : data?.glucose_value && data.trend_arrow
+    ? data?.glucose_value.toString() + data?.trend_arrow
+    : "";
+
   React.useLayoutEffect(() => {
     navigation.setOptions({
-      headerTitle:
-        data?.glucose_value && data.trend_arrow
-          ? data?.glucose_value.toString() + data?.trend_arrow
-          : "",
-      headerTitleStyle: { fontSize: 30 },
-
-      headerRight: () => <SwitchButton />,
+      headerTitle: headerTitle,
+      headerTitleStyle: {
+        fontSize: 30,
+        color: clickedPoint ? "grey" : "black",
+      },
+      headerRight: () => (
+        <View style={{ flexDirection: "row" }}>
+          {clickedPoint ? <ExitButton /> : null}
+          <View style={{ alignSelf: "flex-end" }}>
+            <SwitchButton />
+          </View>
+        </View>
+      ),
     });
-  }, [navigation, showGraph]);
+  }, [navigation, showGraph, clickedPoint]);
 
-  return !showGraph ? <GlucoseReadingsList /> : <GlucoseReadingsChart />;
+  const handleDataPointClick = (glucoseValue: number, time: string) => {
+    setClickedPoint({ glucoseValue, time });
+  };
+
+  return !showGraph ? (
+    <GlucoseReadingsList />
+  ) : (
+    <GlucoseReadingsChart handleDataPointClick={handleDataPointClick} />
+  );
 };
 
 export default ChartsTab;
